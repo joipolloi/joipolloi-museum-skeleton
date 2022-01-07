@@ -10,7 +10,7 @@ html {
   background-color: $color-background;
   box-sizing: border-box;
   color: $color-text;
-  font-family: $sora;
+  font-family: $font-family;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   height: 100%;
@@ -402,7 +402,7 @@ select {
   appearance: none;
   background-color: transparent;
   border: 2px solid $color-border;
-  border-radius: 50vw;
+  border-radius: 5px;
   color: $color-text;
   cursor: pointer;
   display: inline-block;

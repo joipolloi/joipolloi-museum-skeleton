@@ -13,6 +13,14 @@
         <div class="post-sidebar contentWidth">
             <section class="post-main">
                 {{ post.content }}
+                {{
+                    renderComponent(
+                        'RecurringTimes',
+                        {
+                            post: post
+                        }
+                    )
+                }}
             </section>
             <aside class="post-side">
                 {{

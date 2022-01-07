@@ -1,0 +1,13 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+
+[is="joi-recurring-times"] {
+  .times {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .date {
+    margin-right: 20px;
+  }
+}

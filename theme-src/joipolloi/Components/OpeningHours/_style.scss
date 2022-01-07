@@ -5,8 +5,7 @@
 
 [is="joi-opening-hours"] {
   position: relative;
-  background-color: map.get($colors, green);
-  border-radius: 0 10px 10px;
+  background-color: map.get($colors, mid-grey);
   padding: $spacing;
   flex: 0;
   width: 100%;

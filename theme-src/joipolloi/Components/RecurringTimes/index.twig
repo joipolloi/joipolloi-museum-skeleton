@@ -1,0 +1,26 @@
+{% set recurring_options = post.meta('recurring_options') %}
+{% if recurring_options.frequency == 'Specific' %}
+    <div class="RecurringTimes" is="joi-recurring-times">
+        <h4>
+            Times
+        </h4>
+        {% for item in recurring_options.dates %}
+            <div class="times">
+                <div class="date">
+                    <strong>{{ item.date|date('jS M Y') }}</strong>
+                </div>
+                <div class="time">
+                    {% for time in item.times %}
+                        {{ time.start_time }} - {{ time.end_time }}{% if not loop.last %}
+                            <br />
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                {# <pre>
+                                {{ dump(item.times) }}
+                            </pre> #}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

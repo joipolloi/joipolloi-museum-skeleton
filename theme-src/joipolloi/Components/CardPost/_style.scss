@@ -11,7 +11,16 @@
   font-weight: normal;
 
   .content {
-    padding: rem.convert(10px) 0;
+    background-color: color.invert($color-background);
+    color: color.invert($color-text);
+    padding: rem.convert(10px);
+
+    h3,
+    h4,
+    a,
+    .link {
+      color: color.invert($color-text);
+    }
   }
 
   .list-view &,
@@ -33,63 +42,6 @@
       @include mq($from: tablet) {
         padding: 0;
         flex: 1;
-      }
-    }
-  }
-
-  &.coloured {
-    .content {
-      position: relative;
-      background-color: color.invert($color-background);
-      color: color.invert($color-text);
-      padding: rem.convert(20px);
-      border-radius: 0 10px 10px;
-      margin-right: rem.convert($spacing);
-      margin-top: -#{rem.convert($spacing)};
-
-      h3,
-      h4,
-      a,
-      .link {
-        color: color.invert($color-text);
-      }
-    }
-
-    &:nth-child(5n+1) {
-      .content {
-        background-color: map.get($colors, yellow);
-      }
-    }
-
-    &:nth-child(5n+2) {
-      .content {
-        background-color: map.get($colors, red);
-      }
-    }
-
-    &:nth-child(5n+3) {
-      .content {
-        background-color: map.get($colors, blue);
-      }
-    }
-
-    &:nth-child(5n+4) {
-      .content {
-        background-color: map.get($colors, orange);
-      }
-    }
-
-    &:nth-child(5n+5) {
-      .content {
-        background-color: map.get($colors, green);
-      }
-    }
-
-    @each $name, $color in $colors {
-      &.#{$name} {
-        .content {
-          background-color: $color;
-        }
       }
     }
   }

@@ -5,7 +5,7 @@ namespace Joi\DateFormat;
 use Carbon\Carbon;
 use Twig\TwigFunction;
 
-function formatDate($type, $startDate, $startTime, $endDate, $endTime, $frequency)
+function formatEventDate($type, $startDate, $startTime, $endDate, $endTime, $frequency, $recurringOptions)
 {
     $tz = 'Europe/London';
     $now = Carbon::now($tz);
@@ -34,6 +34,16 @@ function formatDate($type, $startDate, $startTime, $endDate, $endTime, $frequenc
         $end = Carbon::createFromFormat('Ymd', $endDate, $tz);
         $diffDays = $now->diffInDays($start);
 
+        if ($recurringOptions) {
+            if ($recurringOptions['frequency'] === 'Daily') {
+                $recurringText = $recurringOptions['frequency'] . ' ';
+            } else if ($recurringOptions['frequency'] === 'Weekly') {
+                $recurringText = $recurringOptions['frequency'] . ' on ' . $recurringOptions['weekdays'];
+            } else if ($recurringOptions['frequency'] === 'Specific') {
+                $recurringText = 'Various times ';
+            }
+        }
+
         if ($diffDays > 6) {
             // More than a week
             if ($start->year != $end->year) {
@@ -49,16 +59,17 @@ function formatDate($type, $startDate, $startTime, $endDate, $endTime, $frequenc
                 $endFormat = $end->format('jS M Y');
             }
 
-            return "{$startFormat} - {$endFormat}";
+            return "{$recurringText}{$startFormat} - {$endFormat}";
         } else {
             // less than a week
             if ($diffDays <= 1) {
             // Is tomorrow or today
-                return $start->format('\S\t\a\r\t\s l');
+                $startFormat = $start->format('\S\t\a\r\t\s l');
+                return "{$recurringText}{$startFormat}";
             } else {
                 $startFormat =  $start->format('\T\h\i\s l');
                 $endFormat = $end->format('jS M Y');
-                return "{$startFormat} until {$endFormat}";
+                return "{$recurringText}{$startFormat} until {$endFormat}";
             }
         }
     }
@@ -106,7 +117,7 @@ function formatDuration($mins)
 }
 
 add_action('timber/twig/filters', function ($twig) {
-    $twig->addFunction(new TwigFunction('formatEventDate', 'Joi\DateFormat\formatDate'));
+    $twig->addFunction(new TwigFunction('formatEventDate', 'Joi\DateFormat\formatEventDate'));
     $twig->addFunction(new TwigFunction('formatDuration', 'Joi\DateFormat\formatDuration'));
     return $twig;
 });

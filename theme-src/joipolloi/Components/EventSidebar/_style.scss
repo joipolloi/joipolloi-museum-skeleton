@@ -3,9 +3,8 @@
 @use "sass:color";
 
 [is="joi-event-sidebar"] {
-  background-color: color(yellow);
+  background-color: color(light-grey);
   padding: 20px;
-  border-radius: 0 5px 5px;
   color: color.invert($color-text);
 
   h5 {
