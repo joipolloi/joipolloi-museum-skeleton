@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "name": "northlincolnshiremuseum-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "hygen": "^6.1.0",
+    "prettier-plugin-twig-melody": "^0.4.6"
+  },
+  "workspaces": {
+    "packages": [
+      "theme-src/*"
+    ],
+    "nohoist": [
+            "**/del"
+        ]
+  },
+  "engines": {
+    "node": ">=16.*"
+  },
+  "scripts": {
+    "new:component": "hygen new component",
+    "watch": "lerna run --parallel watch",
+    "build": "lerna run --parallel build",
+    "lint": "lerna run --parallel lint",
+    "bootstrap": "lerna bootstrap"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}

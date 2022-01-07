@@ -1,0 +1,23 @@
+{% extends 'templates/_document.twig' %}
+
+{% block content %}
+    <div class="PageHeader">
+        <div class="siteWidth">
+            <h1>
+                Search results
+            </h1>
+            {{ renderComponent('SearchForm') }}
+        </div>
+    </div>
+    <section class="PageContent siteWidth">
+        {{
+            renderComponent(
+                'ListSearchResults',
+                {
+                    posts: posts,
+                    searchTerm: searchTerm
+                }
+            )
+        }}
+    </section>
+{% endblock %}

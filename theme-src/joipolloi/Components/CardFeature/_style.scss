@@ -1,0 +1,115 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "styles/base/mq" as *;
+
+[is="joi-card-feature"] {
+  position: relative;
+
+  @include mq($from:tablet) {
+    padding-top: 40px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: color(red);
+    right: 0;
+    width: 100%;
+    top: var(--top, 0);
+    bottom: 0;
+    display: block;
+    border-radius: 0 10px 10px;
+
+    @include mq($from:tablet) {
+      width: 85%;
+      top: 0;
+      bottom: 0;
+    }
+  }
+
+  @each $name, $color in $colors {
+    &.#{$name}:before {
+      background-color: $color;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    @include mq($from:tablet) {
+      flex-direction: row;
+    }
+  }
+
+  .media {
+    position: relative;
+    flex-shrink: 0;
+    padding-top: 56.25%;
+    margin-right: 30px;
+
+    @include mq($from:tablet) {
+      width: 64%;
+      margin-right: 0;
+      padding-top: 0;
+    }
+
+    > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      min-width: 100%;
+      max-width: 100%;
+      min-height: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .content {
+    position: relative;
+    width: auto;
+    padding: 20px 30px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+
+    @include mq($from:tablet) {
+      width: 36%;
+      padding: 30px 30px 30px 53px;
+      min-height: 400px;
+    }
+
+    h2,
+    .h5,
+    a {
+      color: #000;
+    }
+
+    .h5 {
+      margin: 0;
+    }
+  }
+
+  &.right {
+    &::before {
+      left: 0;
+      right: auto;
+    }
+
+    @include mq($from:tablet) {
+      .media {
+        order: 1;
+      }
+
+      .content {
+        order: 0;
+      }
+    }
+  }
+}

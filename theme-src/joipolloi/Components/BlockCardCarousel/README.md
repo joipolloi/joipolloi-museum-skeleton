@@ -1,0 +1,5 @@
+# BlockCardCarousel
+
+| Property   |      Type      |   |
+|:----------|:-------------|:------|
+|   |   |   |

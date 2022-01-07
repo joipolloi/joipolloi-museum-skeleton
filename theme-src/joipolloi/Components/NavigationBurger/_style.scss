@@ -1,0 +1,21 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "sass:color";
+
+[is="joi-navigation-burger"] {
+  padding: 7px 13px;
+
+  svg {
+    margin-left: 7px;
+    stroke: color(white);
+    stroke-linecap: round;
+    stroke-width: 2px;
+  }
+
+  &:hover,
+  &.button--selected {
+    svg {
+      stroke: color(black);
+    }
+  }
+}

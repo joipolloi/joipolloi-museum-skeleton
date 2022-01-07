@@ -1,0 +1,65 @@
+@use "variables" as *;
+@use "mixins"  as *;
+@use "~sass-rem" as rem;
+
+.wp-block-separator {
+  border-top: 0;
+  margin-bottom: $spacing;
+}
+
+.wp-block-quote {
+  padding: 20px 0;
+  margin: 20px 0;
+  border-top: 1px solid color(light-grey);
+  border-bottom: 1px solid color(light-grey);
+
+  p {
+    font-weight: bold;
+    color: color(red);
+    font-size: rem.convert(20px);
+    margin-bottom: 23px;
+  }
+
+  cite {
+    font-size: rem.convert(14px);
+    color: color(grey);
+    font-style: normal;
+    font-weight: normal;
+
+    p {
+      color: inherit;
+      font-size: inherit;
+      font-style: inherit;
+      font-weight: inherit;
+    }
+  }
+}
+
+.wp-block-buttons {
+  margin-bottom: $spacing;
+}
+
+.wp-block-image {
+  margin-bottom: $spacing;
+
+  img {
+    width: auto;
+  }
+}
+
+.wp-block-embed {
+  &__wrapper {
+    position: relative;
+    padding-top: 56.25%;
+    height: 0;
+    overflow: hidden;
+
+    > iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mq" as *;
+@use "styles/base/swiper" as *;
+
+[is="joi-block-image-carousel"] {
+  position: relative;
+
+  .swiper-nav {
+    position: absolute;
+    z-index: 99;
+    right: -25px;
+    top: 50%;
+    margin-top: -75px;
+  }
+
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+}

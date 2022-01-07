@@ -1,0 +1,42 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins"  as *;
+@use "~sass-rem" as rem;
+@use "styles/base/mq" as *;
+
+.post {
+  &-sidebar {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+
+    @include mq($from:tablet) {
+      flex-direction: row;
+    }
+
+    .post-main {
+      order: 1;
+      margin-bottom: $component-spacing-mobile;
+
+      @include mq($from:tablet) {
+        order: 0;
+        width: calc(66.66% - 135px);
+        margin-right: 135px;
+        margin-bottom: $component-spacing-desktop;
+      }
+    }
+
+    .post-side {
+      order: 0;
+      margin-bottom: $component-spacing-mobile;
+
+      @include mq($from:tablet) {
+        order: 1;
+        width: 33.33%;
+        position: sticky;
+        top: 168px;
+        height: 100%;
+        margin-bottom: $component-spacing-desktop;
+      }
+    }
+  }
+}

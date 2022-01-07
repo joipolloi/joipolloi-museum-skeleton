@@ -1,0 +1,24 @@
+<div class="BlockImageCarousel" is="joi-block-image-carousel">
+    <div class="swiper" data-slider>
+        <div class="swiper-wrapper">
+            {% for image in fields.gallery %}
+                <div class="swiper-slide">
+                    <figure>
+                        <img src="{{ image.src('large')|tojpg }}"
+                            srcset="{{ image.srcset('large')|tojpgSrcset }}"
+                            sizes="{{ image.img_sizes('large') }}"
+                            alt="{{ image.alt }}"
+                            loading="lazy" />
+                        <figcaption>
+                            {{ image.caption|e }}
+                        </figcaption>
+                    </figure>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="swiper-nav">
+        <div class="swiper-button swiper-button-prev" data-slider-button="prev"></div>
+        <div class="swiper-button swiper-button-next" data-slider-button="next"></div>
+    </div>
+</div>

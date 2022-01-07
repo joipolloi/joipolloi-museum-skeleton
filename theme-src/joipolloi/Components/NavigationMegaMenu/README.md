@@ -1,0 +1,5 @@
+# NavigationMegaMenu
+
+| Property   |      Type      |   |
+|:----------|:-------------|:------|
+|   |   |   |

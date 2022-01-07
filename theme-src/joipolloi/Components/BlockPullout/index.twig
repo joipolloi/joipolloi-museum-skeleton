@@ -1,0 +1,13 @@
+{% if is_preview %}
+    <div class="BlockPullout alignfull {{ fields.colour }}">
+        <div class="contentWidth">
+            <InnerBlocks allowedBlocks="{{ allowed_blocks }}" />
+        </div>
+    </div>
+{% else %}
+    <div class="BlockPullout {{ fields.colour }} componentSpacing" is="joi-block-pullout">
+        <div class="contentWidth">
+            <InnerBlocks allowedBlocks="{{ allowed_blocks }}" />
+        </div>
+    </div>
+{% endif %}

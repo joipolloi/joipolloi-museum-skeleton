@@ -1,0 +1,13 @@
+{% if is_preview %}
+    <div class="BlockImageColour {{ fields.colour }}">
+        <div class="content">
+            <InnerBlocks template="{{ template }}" templateLock="all" />
+        </div>
+    </div>
+{% else %}
+    <div class="BlockImageColour {{ fields.colour }}" is="joi-block-image-colour">
+        <div class="content">
+            <InnerBlocks template="{{ template }}" templateLock="all" />
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,39 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mq" as *;
+
+.swiper-nav {
+  width: 110px;
+  height: $swiper-nav-size;
+  display: flex;
+
+  @include mq($from:tablet) {
+    flex-direction: column;
+    width: $swiper-nav-size;
+    height: 110px;
+  }
+}
+
+.swiper-button {
+  width: $swiper-nav-size;
+  height: $swiper-nav-size;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  &-next {
+    background-image: url("../assets/icons/arrow-right.svg");
+  }
+
+  &-prev {
+    background-image: url("../assets/icons/arrow-left.svg");
+    margin-right: 10px;
+
+    @include mq($from:tablet) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &-disabled {
+    opacity: 40%;
+  }
+}

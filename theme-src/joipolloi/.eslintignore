@@ -1,0 +1,7 @@
+dist/**
+vendor/**
+webpack.config.js
+build-config.js
+gulpfile.js
+assets/main.js
+assets/admin.js

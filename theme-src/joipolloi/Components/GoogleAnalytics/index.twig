@@ -1,0 +1,10 @@
+{% if isTrackingEnabled %}
+    <div class="GoogleAnalytics" is="joi-google-analytics">
+        <script async src="https://www.googletagmanager.com/gtag/js?{{ gaId }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('consent',
+            'default', { 'ad_storage': 'denied', 'analytics_storage': 'denied' }); gtag('js', new Date());
+            gtag('config', '{{ gaId }}');
+        </script>
+    </div>
+{% endif %}

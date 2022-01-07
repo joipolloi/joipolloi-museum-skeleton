@@ -1,0 +1,7 @@
+@use "styles/base/mixins" as *;
+
+[is="joi-image"] {
+  &:not(.removeCrop) {
+    @include aspect-ratio(16, 9);
+  }
+}

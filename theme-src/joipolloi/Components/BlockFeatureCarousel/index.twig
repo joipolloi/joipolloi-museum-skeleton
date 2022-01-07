@@ -1,0 +1,27 @@
+<div class="BlockFeatureCarousel componentSpacing" is="joi-block-feature-carousel">
+    <div class="siteWidth">
+        <div class="swiper" data-slider>
+            <div class="swiper-wrapper">
+                {% for slide in fields.slides %}
+                    <div class="swiper-slide">
+                        {{
+                            renderComponent(
+                                'CardFeature',
+                                {
+                                    post: slide.content,
+                                    linkTitle: slide.link_title,
+                                    subtitle: slide.subtitle,
+                                    colour: fields.colour
+                                }
+                            )
+                        }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-nav">
+                <div class="swiper-button swiper-button-prev" data-slider-button="prev"></div>
+                <div class="swiper-button swiper-button-next" data-slider-button="next"></div>
+            </div>
+        </div>
+    </div>
+</div>

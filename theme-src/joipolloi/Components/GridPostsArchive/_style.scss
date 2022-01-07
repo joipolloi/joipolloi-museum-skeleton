@@ -1,0 +1,21 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "styles/base/mq" as *;
+
+[is="joi-grid-posts-archive"] {
+  .grid:not(.list-view) {
+    @each $breakpoint, $values in $grid-breakpoints {
+      $columns: map-deep-get($grid-breakpoints, $breakpoint, columns);
+      $gutter-horizontal: map-deep-get($grid-breakpoints, $breakpoint, gutter-horizontal);
+      $gutter-vertical: map-deep-get($grid-breakpoints, $breakpoint, gutter-vertical);
+
+      @if $breakpoint == default {
+        @include grid($columns, flex-start, $gutter-horizontal, $gutter-vertical);
+      } @else {
+        @include mq($from:$breakpoint) {
+          @include grid($columns, flex-start, $gutter-horizontal, $gutter-vertical);
+        }
+      }
+    }
+  }
+}

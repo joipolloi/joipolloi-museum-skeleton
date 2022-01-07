@@ -1,0 +1,10 @@
+<div class="BlockAccordion" is="joi-block-accordion">
+    {% for item in fields.items %}
+        <button class="accordion h4">{% include 'templates/partials/icons/chevron.twig' %}{{ item.title }}</button>
+        <div class="panel">
+            <div class="panel--padding">
+                {{ item.text }}
+            </div>
+        </div>
+    {% endfor %}
+</div>

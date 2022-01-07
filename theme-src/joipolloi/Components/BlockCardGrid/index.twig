@@ -1,0 +1,20 @@
+<div class="BlockCardGrid {{ fields.split_background ? 'split' : '' }}" is="joi-block-card-grid">
+    <div class="siteWidth">
+        {% if fields.title %}
+            <h2>
+                {{ fields.title }}
+            </h2>
+        {% endif %}
+        {{
+            renderComponent(
+                'GridPostsArchive',
+                {
+                    posts: posts,
+                    itemComponent: 'CardPost',
+                    itemClasses: 'coloured',
+                    itemSmallTitle: true
+                }
+            )
+        }}
+    </div>
+</div>

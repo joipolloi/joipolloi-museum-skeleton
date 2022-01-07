@@ -1,0 +1,28 @@
+{% if post.post_type == 'event' %}
+    {{
+        renderComponent(
+            'CardEvent',
+            {
+                post: post
+            }
+        )
+    }}
+{% elseif post.post_type == 'advert' %}
+    {{
+        renderComponent(
+            'CardAdvert',
+            {
+                post: post
+            }
+        )
+    }}
+{% else %}
+    {{
+        renderComponent(
+            'CardPost',
+            {
+                post: post
+            }
+        )
+    }}
+{% endif %}

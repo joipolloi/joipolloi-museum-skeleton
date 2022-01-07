@@ -1,0 +1,51 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mq" as *;
+@use "styles/base/swiper" as *;
+@use "sass:math";
+
+[is="joi-block-card-carousel"] {
+  position: relative;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing;
+
+    h2 {
+      margin: 0;
+    }
+
+    .link {
+      display: none;
+
+      @include mq($from:tablet) {
+        display: inline-block;
+      }
+    }
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: math.div($spacing, 2);
+
+    @include mq($from:tablet) {
+      display: none;
+    }
+  }
+
+  .swiper {
+    overflow: visible;
+  }
+
+  .swiper-nav {
+    position: static;
+
+    @include mq($from:tablet) {
+      position: absolute;
+      z-index: 99;
+      top: 50%;
+      right: 0;
+    }
+  }
+}

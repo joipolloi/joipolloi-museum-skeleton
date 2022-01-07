@@ -1,0 +1,5 @@
+# NavigationFooter
+
+| Property   |      Type      |   |
+|:----------|:-------------|:------|
+|   |   |   |

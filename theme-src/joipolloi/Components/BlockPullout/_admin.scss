@@ -1,0 +1,20 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+
+.BlockPullout {
+  padding: $spacing 0;
+
+  @each $name, $color in $colors {
+    &.#{$name} {
+      background-color: $color;
+    }
+  }
+
+  .contentWidth {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    padding: 0 40px;
+  }
+}

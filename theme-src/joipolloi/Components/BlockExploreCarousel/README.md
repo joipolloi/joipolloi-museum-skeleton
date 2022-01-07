@@ -1,0 +1,5 @@
+# BlockExploreCarousel
+
+| Property   |      Type      |   |
+|:----------|:-------------|:------|
+|   |   |   |

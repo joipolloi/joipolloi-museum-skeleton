@@ -1,0 +1,41 @@
+<div class="BlockCardCarousel componentSpacing" is="joi-block-card-carousel">
+    <div class="header">
+        <h2>
+            {{ fields.title }}
+        </h2>
+        {% set link = fields.link %}
+        {% if link %}
+            {% include 'Partials/_link.twig' with {
+                link: link
+            } only %}
+        {% endif %}
+        <div class="swiper-nav" data-slider-nav>
+            <div class="swiper-button swiper-button-prev" data-slider-button="prev"></div>
+            <div class="swiper-button swiper-button-next" data-slider-button="next"></div>
+        </div>
+    </div>
+    <div class="swiper" data-slider>
+        <div class="swiper-wrapper">
+            {% for slide in fields.slides %}
+                {{
+                    renderComponent(
+                        'CardPost',
+                        {
+                            post: slide.content,
+                            linkTitle: slide.link_title,
+                            smallTitle: true,
+                            classes: 'swiper-slide coloured'
+                        }
+                    )
+                }}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="footer">
+        {% if link %}
+            {% include 'Partials/_link.twig' with {
+                link: link
+            } only %}
+        {% endif %}
+    </div>
+</div>

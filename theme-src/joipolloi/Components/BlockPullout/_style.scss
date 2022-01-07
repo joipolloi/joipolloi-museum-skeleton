@@ -1,0 +1,29 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "styles/base/mq" as *;
+
+[is="joi-block-pullout"] {
+  @include break-container;
+
+  padding: $spacing 0;
+  background-color: color(red);
+
+  @each $name, $color in $colors {
+    &.#{$name} {
+      background-color: $color;
+    }
+  }
+
+  #{$heading-selectors}, p {
+    color: color(black);
+  }
+
+  .contentWidth {
+    .post-sidebar & {
+      @include mq($from:tablet) {
+        padding: 0;
+        width: 66.66%;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<div class="BlockFeature componentSpacing" is="joi-block-feature">
+    <div class="siteWidth">
+        {{
+            renderComponent(
+                'CardFeature',
+                {
+                    post: fields.content,
+                    linkTitle: fields.link_title,
+                    subtitle: fields.subtitle,
+                    colour: fields.colour,
+                    align: fields.media_align
+                }
+            )
+        }}
+    </div>
+</div>

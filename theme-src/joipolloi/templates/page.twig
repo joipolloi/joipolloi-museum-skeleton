@@ -1,0 +1,25 @@
+{% extends 'templates/_document.twig' %}
+
+{% block content %}
+    <article class="post post-type-{{ post.post_type }}">
+        {{
+            renderComponent(
+                'PostHeader',
+                {
+                    post: post
+                }
+            )
+        }}
+        <section class="post-main contentWidth">
+            {{ post.content }}
+        </section>
+    </article>
+    {{
+        renderComponent(
+            'MoreToExplore',
+            {
+                post: post
+            }
+        )
+    }}
+{% endblock %}

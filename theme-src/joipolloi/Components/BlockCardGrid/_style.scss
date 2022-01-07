@@ -1,0 +1,14 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+
+[is="joi-block-card-grid"] {
+  @include break-container;
+
+  h2 {
+    margin-bottom: 40px;
+  }
+
+  &.split {
+    background: linear-gradient(0deg, color(black) 0%, color(black) 125px, color(mid-grey) 125px, color(mid-grey) calc(100% - 125px), color(black) calc(100% - 125px), color(black) 100%);
+  }
+}

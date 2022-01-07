@@ -1,0 +1,89 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "~sass-rem" as rem;
+@use "styles/base/mq" as *;
+
+[is="joi-footer"] {
+  .top {
+    background-color: color(dark-grey);
+
+    &--wrapper {
+      @include grid(1);
+
+      @include mq($from:tablet) {
+        @include grid(2);
+      }
+
+      @include mq($from:desktop) {
+        @include grid(4);
+      }
+    }
+  }
+
+  .top,
+  .bottom {
+    padding-top: $component-spacing-desktop;
+    padding-bottom: $component-spacing-desktop;
+  }
+
+  .bottom {
+    &--wrapper {
+      @include grid(1);
+
+      @include mq($from:tablet) {
+        @include grid(2);
+      }
+
+      @include mq($from:desktop) {
+        @include grid(4);
+      }
+    }
+
+    .partners {
+      display: flex;
+      flex-wrap: wrap;
+
+      .partner {
+        width: 50%;
+        margin-bottom: 20px;
+
+        &:nth-child(even) {
+          text-align: right;
+        }
+
+        &:nth-child(3) {
+          width: 40%;
+        }
+
+        &:nth-child(4) {
+          width: 60%;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+        }
+      }
+
+      img {
+        max-width: 100%;
+        width: auto;
+        display: inline;
+      }
+    }
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: $component-spacing-desktop;
+
+    @include mq($from:tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    a {
+      font-size: rem.convert(14px);
+    }
+  }
+}

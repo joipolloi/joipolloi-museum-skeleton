@@ -1,0 +1,35 @@
+<div class="GridPostsArchive componentSpacing" is="joi-grid-posts-archive">
+    {% if showToggle %}
+        <div class="toggle componentSpacing">
+            <button class="pill pill--small pill--solid pill--noborder">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                    <path d="M0 0h5v5H0z" />
+                    <path d="M0 7h5v5H0z" />
+                    <path d="M7 0h5v5H7z" />
+                    <path d="M7 7h5v5H7z" />
+                </svg>Grid View
+            </button>
+            <button class="pill pill--small pill--noborder">
+                <svg width="14" height="12" viewBox="0 0 14 12" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <path d="M13.482 0v1.5H0V0zM13.482 5.178v1.5H0v-1.5zM13.482 10.356v1.5H0v-1.5z" />
+                    </g>
+                </svg>List View
+            </button>
+        </div>
+    {% endif %}
+    <div class="grid">
+        {% for post in posts %}
+            {{
+                renderComponent(
+                    itemComponent,
+                    {
+                        post: post,
+                        classes: itemClasses,
+                        smallTitle: itemSmallTitle
+                    }
+                )
+            }}
+        {% endfor %}
+    </div>
+</div>

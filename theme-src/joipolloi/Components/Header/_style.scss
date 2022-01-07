@@ -1,0 +1,47 @@
+@use "styles/base/variables" as *;
+@use "Partials/logo";
+@use "sass:map";
+@use "~sass-rem" as rem;
+@use "styles/base/mq" as *;
+
+[is="joi-header"] {
+  background-color: $color-background;
+  height: $header-nav-height;
+  position: fixed;
+  width: 100%;
+  z-index: map.get($zindex, header);
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .menus {
+    margin-left: 10px;
+  }
+
+  .navWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .navTop {
+    font-size: rem.convert(14px);
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    display: none;
+
+    @include mq($from:tablet) {
+      display: flex;
+    }
+
+    a {
+      text-decoration: none;
+      margin-left: 30px;
+      white-space: nowrap;
+    }
+  }
+}

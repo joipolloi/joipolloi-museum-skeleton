@@ -1,0 +1,16 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+
+[is="joi-social-links"] {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  a {
+    margin-right: $spacing;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

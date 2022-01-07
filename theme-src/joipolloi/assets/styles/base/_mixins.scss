@@ -1,0 +1,144 @@
+@use "sass:math";
+@use "sass:map";
+@use "variables" as *;
+@use "styles/base/mq" as *;
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map.get($map, $key);
+  }
+
+  @return $map;
+}
+
+@function color($color) {
+  @return map.get($colors,$color);
+}
+
+// Shorthands to help writing easier to understand code.
+
+@mixin center(
+  $max-width: $container-max-width,
+  $padding: $container-padding-mobile
+) {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $max-width;
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+@mixin break-container {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  .post-sidebar & {
+    @include mq($from:tablet) {
+      margin-left: -25vw;
+      margin-right: -75vw;
+    }
+  }
+}
+
+@mixin reset-list {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+* Grid Mixin
+*
+* Applies a flexbox grid to a container element. All direct children will be modified to create a column based grid.
+*/
+@mixin grid(
+  $columns,
+  $alignment: flex-start,
+  $gutter-horizontal: $gutter-width,
+  $gutter-vertical: $gutter-width
+) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: $alignment;
+  width: 100%;
+
+  > * {
+    width: calc((#{100% / $columns}) - (#{$columns - 1} / #{$columns} * #{$gutter-horizontal}));
+
+    &:nth-child(n) {
+      margin-right: $gutter-horizontal;
+      margin-top: 0;
+    }
+
+    &:nth-child(1n + #{$columns + 1}) {
+      margin-top: $gutter-vertical;
+    }
+
+    &:nth-child(#{$columns}n) {
+      margin-right: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin reset-grid {
+  display: block;
+
+  > * {
+    width: auto;
+
+    &:nth-child(n) {
+      margin-right: 0;
+      margin-top: 0;
+    }
+  }
+}
+
+@mixin aspect-ratio($width:null, $height:null) {
+  position: relative;
+  overflow: hidden;
+
+  @if $width and $height {
+    &::before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: math.div($height, $width) * 100%;
+    }
+  }
+
+  > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+}
+
+@mixin cover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,47 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+
+[is="joi-trip-advisor"] {
+  display: flex;
+  align-items: center;
+
+  .cdsComponent a::after {
+    display: none;
+  }
+
+  .cdsROW.border {
+    border: 0;
+    background: transparent;
+    color: #fff;
+  }
+
+  .cdsRating span {
+    color: #fff;
+
+    &:not(.ui_bubble_rating) {
+      display: block;
+      margin-top: 15px;
+    }
+  }
+
+  .cdsLocName,
+  .logo {
+    display: none;
+  }
+
+  .TA_cdsratingsonlynarrow {
+    margin-top: 25px;
+  }
+
+  .ui_bubble_rating::after {
+    color: #ffd700;
+  }
+
+  .star-icon {
+    color: #fff;
+  }
+
+  .star-icon.active {
+    color: #ffd700;
+  }
+}

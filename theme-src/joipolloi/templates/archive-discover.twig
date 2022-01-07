@@ -1,0 +1,49 @@
+{% extends 'templates/_document.twig' %}
+
+{% block content %}
+    <div class="PageHeader PageHeader--overlap">
+        <div class="siteWidth">
+            {% if title %}
+                <h1>
+                    {{ title }}
+                </h1>
+            {% endif %}
+        </div>
+    </div>
+    {% set firstPost = posts|first %}
+    <section class="PageContent PageContent--overlap siteWidth">
+        <div class="componentSpacing">
+            {{
+                renderComponent(
+                    'CardFeature',
+                    {
+                        post: firstPost,
+                        linkTitle: 'Read the story',
+                        colour: 'blue'
+                    }
+                )
+            }}
+        </div>
+        {{
+            renderComponent(
+                'GridPostsArchive',
+                {
+                    posts: posts|slice(1),
+                    itemComponent: 'CardPost'
+                }
+            )
+        }}
+    </section>
+    {{
+        renderComponent(
+            'LoadMore',
+            {
+                action: 'load_more_posts',
+                postType: 'discover',
+                pagination: posts.pagination,
+                container: '.post-type-archive-discover .GridPostsArchive'
+            }
+        )
+    }}
+    {{ renderComponent('MoreToExplore') }}
+{% endblock %}

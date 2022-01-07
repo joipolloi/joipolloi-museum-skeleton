@@ -1,0 +1,45 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "sass:map";
+@use "styles/base/mq" as *;
+
+[is="joi-mega-menu"] {
+  position: fixed;
+  top: $header-nav-height;
+  background-color: color(white);
+  width: 100%;
+  padding: 50px 0 100px;
+  z-index: map.get($zindex, dropdown);
+  transform: translateY(-100%);
+  transition: transform 0.1s ease-in-out;
+  display: none;
+
+  &.open {
+    transform: translateY(0);
+  }
+
+  h5,
+  a {
+    color: color(black);
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    @include mq($from:tablet) {
+      flex-direction: row;
+    }
+  }
+
+  .search {
+    width: 100%;
+    margin-bottom: $spacing;
+
+    @include mq($from:tablet) {
+      width: calc(50% - #{$spacing});
+      margin-right: $spacing;
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "sass:map";
+
+[is="joi-block-accordion"] {
+  margin-bottom: $spacing;
+
+  .accordion {
+    background-color: transparent;
+    color: color(orange);
+    border: 1px solid color(light-grey);
+    width: 100%;
+    margin: -1px 0 0;
+    text-align: left;
+    padding: 15px 20px;
+    cursor: pointer;
+
+    svg {
+      width: 7px;
+      height: 14px;
+      transition: transform 0.2s ease-out;
+      margin-right: 10px;
+
+      path {
+        stroke: color(orange);
+        stroke-width: 2px;
+      }
+    }
+
+    &.active {
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .panel {
+    border: 1px solid color(light-grey);
+    border-top-width: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+
+    &--padding {
+      padding: 15px 20px;
+    }
+  }
+
+  p {
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+}

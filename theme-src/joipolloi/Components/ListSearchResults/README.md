@@ -1,0 +1,5 @@
+# ListSearchResults
+
+| Property   |      Type      |   |
+|:----------|:-------------|:------|
+|   |   |   |

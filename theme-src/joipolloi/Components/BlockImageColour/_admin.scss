@@ -1,0 +1,30 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+
+.BlockImageColour {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: color(red);
+    right: $spacing;
+    top: 0;
+    bottom: 25%;
+    left: 0;
+    display: block;
+    border-radius: 0 5px 5px;
+  }
+
+  @each $name, $color in $colors {
+    &.#{$name}:before {
+      background-color: $color;
+    }
+  }
+
+  .content {
+    position: relative;
+    padding-left: 20px;
+    padding-top: 20px;
+  }
+}

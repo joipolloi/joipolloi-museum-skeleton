@@ -1,0 +1,23 @@
+<header class="Header" is="joi-header">
+    <div class="container siteWidth">
+        {% include 'Partials/_logo.twig' with {
+            logo: logo,
+            site: site
+        } only %}
+        <div class="menus">
+            <div class="navTop">
+                Entry is free, we are open {{ openingTime|lower }}
+                <a href="https://north-lincolnshire-council.arttickets.org.uk/donate"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Make a donation
+                </a>
+            </div>
+            <div class="navWrapper">
+                {{ renderComponent('NavigationMain') }}
+                {{ renderComponent('NavigationBurger') }}
+            </div>
+        </div>
+    </div>
+</header>
+{{ renderComponent('MegaMenu') }}

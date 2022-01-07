@@ -1,0 +1,23 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "~sass-rem" as rem;
+
+[is="joi-card-product"] {
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    padding: 10px 0;
+  }
+
+  .price {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .category {
+    font-size: rem.convert(14px);
+    margin-bottom: rem.convert(5px);
+  }
+}

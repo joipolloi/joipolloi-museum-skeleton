@@ -1,0 +1,78 @@
+@use "sass:color";
+@use "sass:map";
+@use "styles/base/variables" as *;
+@use "~sass-rem" as rem;
+@use "styles/base/mq" as *;
+
+[is="joi-card-event"] {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  font-weight: normal;
+
+  .list-view &,
+  .search-results & {
+    margin-bottom: $spacing;
+
+    @include mq($from: tablet) {
+      flex-direction: row;
+    }
+
+    .image {
+      @include mq($from: tablet) {
+        width: 25%;
+        margin-right: $spacing;
+      }
+    }
+
+    .content {
+      @include mq($from: tablet) {
+        padding: 0;
+        flex: 1;
+      }
+    }
+  }
+
+  .image {
+    position: relative;
+  }
+
+  .icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    .pill {
+      margin-right: 5px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .date {
+    display: flex;
+    margin-bottom: 20px;
+
+    .calendar-icon {
+      fill: #fff;
+      width: 19px;
+      height: 21px;
+      margin-right: 8px;
+    }
+  }
+
+  .content {
+    padding: rem.convert(10px) 0;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+
+    .pill {
+      margin-right: 20px;
+    }
+  }
+}

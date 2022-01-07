@@ -1,0 +1,35 @@
+{% set image = post.meta('ad_image') %}
+{% set video = post.meta('ad_video') %}
+{% set text = post.meta('ad_text') %}
+
+<a href="{{ post.ad_link.url }}"
+    class="CardAdvert"
+    is="joi-card-advert"
+    {{ post.ad_link.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}>
+    {% if video or image %}
+        {% if video %}
+            <video muted autoplay playsinline loop poster="{{ image.src(size)|tojpg }}">
+                <source src="{{ video }}" type="video/mp4" />Your browser does not support the video tag.
+            </video>
+        {% else %}
+            <img src="{{ image.src(size)|tojpg }}"
+                srcset="{{ image.srcset(size)|tojpgSrcset }}"
+                sizes="{{ image.img_sizes(size) }}"
+                alt="{{ image.alt }}" />
+        {% endif %}
+    {% endif %}
+    {% if video or image %}
+        <div class="overlay"></div>
+    {% endif %}
+    <div class="content">
+        <div class="top">
+            <h3>
+                {{ post.title }}
+            </h3>
+            {{ text }}
+        </div>
+        <div class="bottom">
+            <span class="link">{{ post.ad_link.title }}</span>
+        </div>
+    </div>
+</a>

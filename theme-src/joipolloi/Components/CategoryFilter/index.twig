@@ -1,0 +1,9 @@
+<div class="CategoryFilter" is="joi-category-filter">
+    <ul>
+        {% for term in terms %}
+            <li class="button">
+                {{ term.name }}<input type="checkbox" name="{{ taxonomy }}[]" value="{{ term.slug }}" hidden />
+            </li>
+        {% endfor %}
+    </ul>
+</div>

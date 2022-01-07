@@ -1,0 +1,11 @@
+{% if posts.pagination.next %}
+    <div class="LoadMore siteWidth componentSpacing" is="joi-load-more">
+        <button class="button"
+            data-action="{{ action }}"
+            data-post-type="{{ postType }}"
+            data-max-pages="{{ pagination.total }}"
+            data-container="{{ container }}">
+            Load More
+        </button>
+    </div>
+{% endif %}

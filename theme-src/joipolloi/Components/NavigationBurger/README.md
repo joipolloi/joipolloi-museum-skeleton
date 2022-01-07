@@ -1,0 +1,5 @@
+# NavigationBurger
+
+| Property   |      Type      |   |
+|:----------|:-------------|:------|
+|   |   |   |

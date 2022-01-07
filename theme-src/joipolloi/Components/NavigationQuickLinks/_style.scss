@@ -1,0 +1,20 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+
+[is="joi-navigation-quick-links"] {
+  .menu {
+    @include reset-list;
+
+    li {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        font-weight: normal;
+      }
+    }
+  }
+}

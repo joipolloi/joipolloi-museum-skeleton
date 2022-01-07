@@ -1,0 +1,43 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "sass:color";
+
+[is="joi-event-sidebar"] {
+  background-color: color(yellow);
+  padding: 20px;
+  border-radius: 0 5px 5px;
+  color: color.invert($color-text);
+
+  h5 {
+    color: color.invert($color-text);
+  }
+
+  .calendar-icon {
+    margin-right: 8px;
+  }
+
+  .item:not(:last-child) {
+    margin-bottom: $spacing;
+  }
+
+  .accessibility {
+    @include reset-list;
+
+    display: flex;
+    align-items: center;
+
+    li:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  .social {
+    a {
+      display: inline-block;
+    }
+
+    a:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}

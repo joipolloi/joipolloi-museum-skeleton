@@ -1,0 +1,12 @@
+{% if enableBanner %}
+    <div class="CookieNotice" is="joi-cookie-notice">
+        <div class="content">
+            {{ message }}
+            <a href="{{ privacyLink }}">Read more</a>
+        </div>
+        <div class="buttons">
+            <button type="button" class="button button--invert continue" data-continue>{{ continueLabel }}</button>
+            <button type="button" class="decline" data-decline>{{ declineLabel }}</button>
+        </div>
+    </div>
+{% endif %}

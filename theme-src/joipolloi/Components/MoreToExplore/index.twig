@@ -1,0 +1,24 @@
+{% if hasItems %}
+    <div class="MoreToExplore" is="joi-more-to-explore">
+        <div class="siteWidth">
+            <h2>
+                More to explore
+            </h2>
+            <div class="container">
+                {% for item in items %}
+                    {{
+                        renderComponent(
+                            'CardPost',
+                            {
+                                post: item.content,
+                                linkTitle: item.link_title,
+                                classes: 'coloured',
+                                smallTitle: true
+                            }
+                        )
+                    }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}

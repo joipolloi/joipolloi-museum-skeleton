@@ -1,0 +1,9 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+
+[is="joi-load-more-events"] {
+  button {
+    display: block;
+    width: 100%;
+  }
+}

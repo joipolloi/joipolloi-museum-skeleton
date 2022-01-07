@@ -1,0 +1,112 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "styles/base/mq" as *;
+@use "sass:color";
+
+[is="joi-card-product-feature"] {
+  position: relative;
+  margin-bottom: $spacing;
+
+  @include mq($from:tablet) {
+    padding-top: 40px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: color(yellow);
+    right: 0;
+    width: 100%;
+    top: 10%;
+    bottom: 0;
+    display: block;
+    border-radius: 0 10px 10px;
+
+    @include mq($from:tablet) {
+      width: 85%;
+      top: 0;
+      bottom: 10%;
+    }
+  }
+
+  @each $name, $color in $colors {
+    &.#{$name}:before {
+      background-color: $color;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    @include mq($from:tablet) {
+      flex-direction: row;
+    }
+  }
+
+  .media {
+    position: relative;
+    flex-shrink: 0;
+    width: 40%;
+    margin-left: 20px;
+
+    @include mq($from:tablet) {
+      width: 33%;
+      margin-right: 0;
+      margin-left: 0;
+      padding-top: 0;
+    }
+
+    .Image {
+      box-shadow: 3px 3px 10px #00000029;
+    }
+  }
+
+  .content {
+    position: relative;
+    width: auto;
+    padding: 20px 30px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+
+    @include mq($from:tablet) {
+      width: 66%;
+      padding: 30px 30px 30px 53px;
+      min-height: 400px;
+    }
+
+    h2,
+    h4,
+    .h5,
+    a {
+      color: #000;
+    }
+
+    h2,
+    .h5 {
+      margin: 0;
+    }
+  }
+
+  .priceWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .price {
+    font-weight: bold;
+  }
+
+  .button {
+    border-color: color.invert($color-text);
+    color: color.invert($color-text);
+
+    &:hover {
+      background-color: color.invert($color-text);
+      color: $color-text;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<a href="{{ post.link }}" class="CardPost {{ classes }}" is="joi-card-post">
+    {% if post.thumbnail %}
+        <div class="image">
+            {{
+                renderComponent(
+                    'Image',
+                    {
+                        image: post.thumbnail,
+                        imageSize: 'card'
+                    }
+                )
+            }}
+        </div>
+    {% endif %}
+    <div class="content">
+        {% if smallTitle %}
+            <h4>
+                {{ post.title }}
+            </h4>
+        {% else %}
+            <h3>
+                {{ post.title }}
+            </h3>
+        {% endif %}
+
+        {% if post.short_description %}
+            <p>
+                {{ post.short_description }}
+            </p>
+        {% endif %}
+        {% set customLinkTitle = linkTitle ? linkTitle : defaultLinkTitle %}
+        <span class="link">{{ customLinkTitle }}</span>
+    </div>
+</a>

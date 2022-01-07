@@ -1,0 +1,31 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins"  as *;
+@use "~sass-rem" as rem;
+@use "styles/base/mq" as *;
+
+.PageHeader {
+  background-color: color(red);
+  padding: 50px 0 80px;
+
+  h1 {
+    color: color(black);
+  }
+
+  &--overlap {
+    padding-bottom: 160px;
+  }
+
+  .SearchForm {
+    @include mq($from: tablet) {
+      max-width: 50%;
+    }
+  }
+}
+
+.PageContent {
+  margin-top: 80px;
+
+  &--overlap {
+    margin-top: -80px;
+  }
+}

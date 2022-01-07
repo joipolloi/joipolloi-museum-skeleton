@@ -1,0 +1,18 @@
+<div class="Card {{ classes }}" is="joi-card">
+    {{
+        renderComponent(
+            'Image',
+            {
+                image: image,
+                imageSize: imageSize
+            }
+        )
+    }}
+    <div class="content">
+        <h4>
+            {{ title }}
+        </h4>
+        {{ text }}
+        <a href="{{ link.url }}" target="{{ link.target }}">{{ link.title }}</a>
+    </div>
+</div>

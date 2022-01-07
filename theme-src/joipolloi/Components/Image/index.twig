@@ -1,0 +1,11 @@
+{% if image %}
+    {% set size = imageSize ? imageSize : 'thumbnail' %}
+    {% set loading = lazy ? 'lazy' : 'auto' %}
+    <div class="Image {{ removeCrop ? 'removeCrop' : '' }}" is="joi-image">
+        <img src="{{ image.src(size)|tojpg }}"
+            srcset="{{ image.srcset(size)|tojpgSrcset }}"
+            sizes="{{ image.img_sizes(size) }}"
+            alt="{{ image.alt }}"
+            loading="{{ loading }}" />
+    </div>
+{% endif %}

@@ -1,0 +1,37 @@
+{% extends 'templates/_document.twig' %}
+
+{% block content %}
+    <article class="post post-type-{{ post.post_type }}">
+        {{
+            renderComponent(
+                'PostHeader',
+                {
+                    post: post
+                }
+            )
+        }}
+        <div class="post-sidebar contentWidth">
+            <section class="post-main">
+                {{ post.content }}
+            </section>
+            <aside class="post-side">
+                {{
+                    renderComponent(
+                        'EventSidebar',
+                        {
+                            post: post
+                        }
+                    )
+                }}
+            </aside>
+        </div>
+    </article>
+    {{
+        renderComponent(
+            'MoreToExplore',
+            {
+                post: post
+            }
+        )
+    }}
+{% endblock %}

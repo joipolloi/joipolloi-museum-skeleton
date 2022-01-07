@@ -1,0 +1,19 @@
+<div class="OpeningHours componentSpacing" is="joi-opening-hours">
+    <div class="pill pill--solid pill--small">
+        Free Entry
+    </div>
+    <h2>
+        We Are Open
+    </h2>
+    <div class="opening">
+        {{ openingTime }}
+    </div>
+    {% if event %}
+        <hr />
+        <h4>
+            On today
+        </h4>
+        <a class="link" href="/">{{ event.start_date|date('g:ia') }} {{ event.title }}</a>
+    {% endif %}
+    <a class="button" href="/whats-on">Plan Your Visit</a>
+</div>

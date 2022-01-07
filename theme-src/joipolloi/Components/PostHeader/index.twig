@@ -1,0 +1,46 @@
+{% set image = post.meta('header_image') %}
+{% set video = post.meta('header_video') %}
+{% set text = post.meta('header_text') %}
+{% set showOpening = post.meta('header_show_opening') %}
+{% set class = showOpening ? 'showOpening' : '' %}
+{% set size = 'post-header' %}
+{% set hasMedia = video or image ? 'hasMedia' : '' %}
+
+<header class="PostHeader {{ class }} {{ hasMedia }}" is="joi-post-header">
+    {% if video or image %}
+        {% if video %}
+            <video muted autoplay playsinline loop poster="{{ image.src(size)|tojpg }}">
+                <source src="{{ video }}" type="video/mp4" />Your browser does not support the video tag.
+            </video>
+        {% else %}
+            <img src="{{ image.src(size)|tojpg }}"
+                srcset="{{ image.srcset(size)|tojpgSrcset }}"
+                sizes="{{ image.img_sizes(size) }}"
+                alt="{{ image.alt }}" />
+        {% endif %}
+    {% endif %}
+    {% if (video or image) and not showOpening %}
+        <div class="overlay"></div>
+    {% endif %}
+    {% if not showOpening %}
+        <div class="content contentWidth">
+            <h1>
+                {{ post.title }}
+            </h1>
+            {{ text }}
+        </div>
+    {% endif %}
+</header>
+{% if showOpening %}
+    <div class="contentWidth">
+        {{
+            renderComponent(
+                'OpeningHours',
+                {
+                    image: image,
+                    imageSize: imageSize
+                }
+            )
+        }}
+    </div>
+{% endif %}

@@ -1,0 +1,495 @@
+@use "variables" as *;
+@use "mixins"  as *;
+@use "~sass-rem" as rem;
+@use "styles/base/mq" as *;
+@use "sass:color";
+@use "sass:math";
+@use "sass:map";
+
+html {
+  background-color: $color-background;
+  box-sizing: border-box;
+  color: $color-text;
+  font-family: $sora;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  line-height: math.div(23, 16);
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}
+
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/**
+* 1.0 Typography
+*
+* Styling all likely used content flow elements.
+*/
+
+#{$heading-selectors} {
+  color: $color-headline;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: rem.convert(10px);
+  margin-top: 0;
+
+  a,
+  a:hover,
+  a:focus {
+    color: $color-headline;
+    text-decoration: none;
+  }
+}
+
+h1,
+.h1 {
+  font-size: rem.convert(28px);
+  line-height: math.div(32, 28);
+
+  @include mq($from:tablet) {
+    font-size: rem.convert(40px);
+    line-height: math.div(48, 40);
+  }
+}
+
+h2,
+.h2 {
+  font-size: rem.convert(26px);
+  line-height: math.div(28, 26);
+
+  @include mq($from:tablet) {
+    font-size: rem.convert(35px);
+    line-height: math.div(40, 35);
+  }
+}
+
+h3,
+.h3 {
+  font-size: rem.convert(26px);
+  line-height: math.div(35, 26);
+
+  @include mq($from:tablet) {
+    font-size: rem.convert(30px);
+    line-height: math.div(35, 30);
+  }
+}
+
+h4,
+.h4 {
+  font-size: rem.convert(20px);
+  line-height: math.div(28, 20);
+}
+
+h5,
+.h5 {
+  font-size: rem.convert(16px);
+  line-height: math.div(23, 16);
+}
+
+a,
+.link {
+  color: $color-text;
+  font-weight: bold;
+  transition: color 0.2s ease-out;
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    color: $color-text;
+  }
+}
+
+p,
+.paragraph,
+table,
+figure {
+  margin: 0 0 rem.convert($spacing);
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+figcaption {
+  font-size: rem.convert(14px);
+  margin-top: 10px;
+  color: color(grey);
+}
+
+/**
+* 1.1 Lists & Tables
+*
+* Default and custom styled list and table elements.
+*/
+
+ul,
+ol {
+  margin: 0 0 1.2rem;
+  padding-left: 1.5rem;
+
+  ul,
+  ol {
+    margin-bottom: 0;
+  }
+}
+
+ul,
+ol,
+li {
+  &::marker {
+    color: color(orange);
+    font-weight: bold;
+  }
+}
+
+li {
+  padding-left: 0;
+}
+
+/**
+* 2.0 Layout
+*
+* Global layout classes for a consistent appearance.
+*/
+
+.pageWrapper {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  overflow-x: hidden;
+  height: 100vh;
+
+  .admin-bar & {
+    padding-top: 46px;
+
+    @media (min-width: 782px) {
+      padding-top: 32px;
+    }
+  }
+}
+
+.mainContent {
+  margin-top: $header-nav-height;
+  position: relative;
+  z-index: map.get($zindex, content);
+  flex-grow: 1;
+}
+
+.siteWidth {
+  @include center;
+
+  @include mq($from:tablet) {
+    @include center($padding: $container-padding-tablet);
+  }
+
+  @include mq($from:desktop) {
+    @include center($padding: $container-padding-desktop);
+  }
+}
+
+.contentWidth {
+  @include center;
+
+  @include mq($from:tablet) {
+    @include center($padding: $container-padding-tablet);
+  }
+
+  @include mq($from:desktop) {
+    @include center($padding: $container-padding-desktop);
+  }
+
+  .page:not(.home):not(.woocommerce-page) &,
+  .single:not(.single-event) .post & {
+    @include center($max-width:$container-narrow-max-width);
+
+    @include mq($from:tablet) {
+      @include center($max-width:$container-narrow-max-width, $padding: 0);
+    }
+
+    @include mq($from:desktop) {
+      @include center($max-width:$container-narrow-max-width, $padding: 0);
+    }
+  }
+}
+
+.componentSpacing {
+  margin-bottom: $component-spacing-mobile;
+
+  @include mq($from:tablet) {
+    margin-bottom: $component-spacing-tablet;
+  }
+
+  @include mq($from:desktop) {
+    margin-bottom: $component-spacing-desktop;
+  }
+}
+
+/**
+* 1.3 Forms
+*
+* Global form elements, including structering wrapper elements.
+*/
+
+form {
+  margin: 0;
+}
+
+fieldset {
+  border: 0;
+  margin: 0 0 1.5rem;
+  padding: 0;
+
+  *:last-child {
+    margin-bottom: 0;
+  }
+
+  input,
+  select,
+  textarea {
+    margin: 0 0 1.875rem;
+  }
+}
+
+legend {
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.9375rem;
+}
+
+label {
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: rem.convert(10px);
+  width: 100%;
+}
+
+#{$input-selectors} {
+  appearance: none;
+  background-color: $color-background;
+  border: 1px solid color(light-grey);
+  border-radius: 5px;
+  color: $color-text;
+  font-family: inherit;
+  font-size: inherit;
+  min-height: 48px;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    border-color: $color-border;
+    outline: 0;
+  }
+
+  &.wpcf7-not-valid {
+    border-color: color(red);
+  }
+}
+
+input,
+select,
+textarea {
+  margin: 0 0 1rem;
+  padding: 15px;
+}
+
+textarea {
+  min-height: 150px;
+  padding: 20px;
+  resize: vertical;
+  width: 100%;
+}
+
+select {
+  appearance: none;
+  line-height: 1.75;
+  padding-right: 45px;
+
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+[type="checkbox"],
+[type="radio"] {
+  opacity: 0%;
+  pointer-events: none;
+  position: absolute;
+  width: 1px;
+
+  &,
+  &:hover,
+  &:focus {
+    border-color: $color-border;
+    outline: 0;
+  }
+
+  + label,
+  + .wpcf7-list-item-label {
+    display: inline-block;
+    padding-left: 1.875rem;
+    position: relative;
+    width: 100%;
+
+    &::before {
+      background-color: #fff;
+      border: 1px solid $color-border;
+      border-radius: 2px;
+      content: "";
+      display: block;
+      height: 15px;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 4px;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+      width: 15px;
+    }
+  }
+
+  &:checked {
+    + label::before,
+    + .wpcf7-list-item-label::before {
+      background-color: $color-accent;
+      border-color: $color-accent;
+      box-shadow: inset 0 0 0 2px #fff;
+    }
+  }
+}
+
+[type="radio"] {
+  + label::before {
+    border-radius: 50%;
+  }
+}
+
+/* Skip link behaviour */
+
+.skipLink {
+  position: fixed;
+  top: -100px;
+  z-index: 999;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+/**
+* 3.0 Buttons
+*
+*/
+
+.button,
+.wp-block-button__link {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid $color-border;
+  border-radius: 50vw;
+  color: $color-text;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: inherit;
+  padding: rem.convert(20px);
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover,
+  &--selected {
+    background-color: $color-border;
+    color: color.invert($color-text);
+  }
+
+  &--invert {
+    border-color: color.invert($color-text);
+    color: color.invert($color-text);
+
+    &:hover {
+      background-color: color.invert($color-text);
+      color: $color-text;
+    }
+  }
+}
+
+.pill {
+  border-radius: 50vw;
+  display: inline-flex;
+  align-items: center;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: inherit;
+  padding: rem.convert(20px);
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  background-color: transparent;
+  border: 2px solid $color-border;
+  color: $color-text;
+
+  svg {
+    fill: $color-text;
+    margin-right: 5px;
+    margin-bottom: 2px;
+  }
+
+  &--small {
+    font-size: rem.convert(13px);
+    padding: rem.convert(10px);
+  }
+
+  &--solid {
+    background-color: $color-border;
+    color: color.invert($color-text);
+
+    svg {
+      fill: color.invert($color-text);
+    }
+  }
+
+  &--noborder {
+    border-color: color.invert($color-border);
+  }
+}
+
+.vh {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.vh.focusable:active,
+.vh.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}

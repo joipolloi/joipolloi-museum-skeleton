@@ -1,0 +1,8 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+
+[is="joi-category-filter"] {
+  ul {
+    @include reset-list;
+  }
+}

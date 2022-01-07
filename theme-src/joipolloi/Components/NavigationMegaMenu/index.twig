@@ -1,0 +1,33 @@
+<div id="navigationMegaMenu" class="NavigationMegaMenu" is="joi-navigation-mega-menu">
+    <div class="menu-col">
+        {% if menuMain %}
+            <nav class="menu-main">
+                {% include 'Partials/_menu.twig' with {
+                    items: menuMain.get_items,
+                    level: '0',
+                    maxLevel: '0'
+                } only %}
+            </nav>
+        {% endif %}
+        {% if menuFirst %}
+            <nav>
+                {% include 'Partials/_menu.twig' with {
+                    items: menuFirst.get_items,
+                    level: '0',
+                    maxLevel: maxLevel
+                } only %}
+            </nav>
+        {% endif %}
+    </div>
+    <div class="menu-col">
+        {% if menuSecond %}
+            <nav>
+                {% include 'Partials/_menu.twig' with {
+                    items: menuSecond.get_items,
+                    level: '0',
+                    maxLevel: maxLevel
+                } only %}
+            </nav>
+        {% endif %}
+    </div>
+</div>

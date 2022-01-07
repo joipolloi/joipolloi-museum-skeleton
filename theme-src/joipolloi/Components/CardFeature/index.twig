@@ -1,0 +1,32 @@
+{% set mediaAlign = align ? align : 'left' %}
+<div class="CardFeature {{ colour }} {{ mediaAlign }}" is="joi-card-feature">
+    <div class="container">
+        <div class="media">
+            {% if post.thumbnail %}
+                <img src="{{ post.thumbnail.src('card')|tojpg }}"
+                    srcset="{{ post.thumbnail.srcset('card')|tojpgSrcset }}"
+                    sizes="{{ post.thumbnail.img_sizes('card') }}"
+                    alt="{{ post.thumbnail.alt }}"
+                    loading="lazy" />
+            {% endif %}
+        </div>
+        <div class="content">
+            {% if subtitle %}
+                <div class="h5">
+                    {{ subtitle }}
+                </div>
+            {% endif %}
+            <h2>
+                {{ post.title }}
+            </h2>
+            {% if post.short_description %}
+                <p>
+                    {{ post.short_description }}
+                </p>
+            {% endif %}
+            {% if linkTitle %}
+                        <a href="{{ post.link }}">{{ linkTitle }}</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "styles/base/mq" as *;
+
+[is="joi-navigation-mega-menu"] {
+  display: flex;
+  flex: 1;
+
+  > .menu-col {
+    width: calc(50% - #{$spacing});
+
+    &:first-child {
+      margin-right: $spacing;
+    }
+  }
+
+  .menu {
+    @include reset-list;
+
+    .menu-link {
+      color: color(black);
+    }
+
+    &--level-0 {
+      > li {
+        margin-bottom: $spacing;
+      }
+
+      .menu-link {
+        text-decoration: none;
+        font-weight: bold;
+      }
+    }
+
+    &--level-1 {
+      margin-top: 20px;
+
+      .menu-link {
+        text-decoration: underline;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .menu-main {
+    li {
+      @include mq($from:tablet) {
+        &:nth-child(-n+2) {
+          display: none;
+        }
+      }
+
+      @include mq($from:desktop) {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# CardProductFeature
+
+| Property   |      Type      |   |
+|:----------|:-------------|:------|
+|   |   |   |

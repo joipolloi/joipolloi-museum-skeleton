@@ -1,0 +1,41 @@
+@use "styles/base/variables" as *;
+@use "sass:color";
+@use "sass:map";
+
+[is="joi-cookie-notice"] {
+  position: fixed;
+  z-index: map.get($zindex, modal);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: color.invert($color-background);
+  color: color.invert($color-text);
+  padding: 20px 10px;
+  display: none;
+
+  &.visible {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    color: color.invert($color-text);
+  }
+
+  .continue {
+    margin-right: 20px;
+  }
+
+  .decline {
+    font-weight: bold;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

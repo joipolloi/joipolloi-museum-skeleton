@@ -1,0 +1,38 @@
+@use "styles/base/mixins" as *;
+@use "styles/base/variables" as *;
+@use "~sass-rem" as rem;
+@use "styles/base/mq" as *;
+
+[is="joi-navigation-main"] {
+  .menu {
+    @include reset-list;
+
+    display: flex;
+
+    li {
+      margin-right: 40px;
+      display: none;
+
+      @include mq($from:tablet) {
+        display: block;
+
+        &:nth-last-child(-n+2) {
+          display: none;
+        }
+      }
+
+      @include mq($from:desktop) {
+        &:nth-last-child(-n+2) {
+          display: block;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        font-weight: bold;
+        color: $color-menu-link;
+        font-size: rem.convert(18px);
+      }
+    }
+  }
+}

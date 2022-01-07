@@ -1,0 +1,32 @@
+<div class="BlockExploreCarousel componentSpacing" is="joi-block-explore-carousel">
+    <div class="siteWidth">
+        <div class="container">
+            <div class="header">
+                <h2>
+                    {{ fields.title }}
+                </h2>
+                <div class="swiper-nav" data-slider-nav>
+                    <div class="swiper-button swiper-button-prev" data-slider-button="prev"></div>
+                    <div class="swiper-button swiper-button-next" data-slider-button="next"></div>
+                </div>
+            </div>
+            <div class="swiper" data-slider>
+                <div class="swiper-wrapper">
+                    {% for slide in fields.slides %}
+                        {{
+                            renderComponent(
+                                'CardPost',
+                                {
+                                    post: slide.content,
+                                    linkTitle: slide.link_title,
+                                    smallTitle: true,
+                                    classes: 'swiper-slide'
+                                }
+                            )
+                        }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

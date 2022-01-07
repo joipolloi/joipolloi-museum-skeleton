@@ -1,0 +1,81 @@
+@font-face {
+  font-family: Sora;
+  src:
+    url("../assets/fonts/Sora-Bold.woff2") format("woff2"),
+    url("../assets/fonts/Sora-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Sora;
+  src:
+    url("../assets/fonts/Sora-Regular.woff2") format("woff2"),
+    url("../assets/fonts/Sora-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+$colors: (
+  black: #000,
+  white: #fff,
+  grey: #ccc,
+  light-grey: #ededeb,
+  mid-grey: #37424a,
+  dark-grey: #1a1a1a,
+  red: #d3401b,
+  orange: #ff7527,
+  yellow: #faad0b,
+  green: #00828c,
+  blue: #46bcf6
+);
+$sora: sora, sans-serif;
+$container-max-width: 1440px;
+$container-narrow-max-width: 691px;
+$container-padding-desktop: 78px;
+$container-padding-tablet: 40px;
+$container-padding-mobile: 20px;
+$content-max-width: 600px;
+$header-nav-height: 128px;
+$gutter-width: 24px;
+$component-spacing-desktop: 80px;
+$component-spacing-tablet: 80px;
+$component-spacing-mobile: 40px;
+$color-background: #000;
+$color-text: #fff;
+$color-headline: $color-text;
+$color-border: $color-text;
+$color-accent: #ff7527;
+$color-contrast: #414751;
+$color-menu-link: $color-text;
+$spacing: 30px;
+$swiper-nav-size: 50px;
+$heading-selectors: "h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6";
+$input-selectors: '[type="tel"], [type="url"], [type="text"], [type="date"], [type="email"], [type="search"], [type="number"], [type="password"], textarea, select';
+$grid-breakpoints: (
+  default: (
+    columns: 1,
+    gutter-horizontal: 10px,
+    gutter-vertical: 10px
+  ),
+  tablet: (
+    columns: 2,
+    gutter-horizontal: 30px,
+    gutter-vertical: 30px
+  ),
+  desktop: (
+    columns: 3,
+    gutter-horizontal: 30px,
+    gutter-vertical: 30px
+  )
+);
+$zindex: (
+  modal: 9000,
+  overlay: 8000,
+  header: 6000,
+  dropdown: 5500,
+  footer: 5000,
+  content: 4000,
+);

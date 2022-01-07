@@ -1,0 +1,28 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+@use "styles/base/mq" as *;
+
+[is="joi-navigation-footer"] {
+  .menu {
+    @include reset-list;
+
+    display: flex;
+    flex-direction: column;
+
+    @include mq($from:tablet) {
+      flex-direction: row;
+    }
+
+    li {
+      margin-right: $spacing;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      a {
+        font-weight: normal;
+      }
+    }
+  }
+}

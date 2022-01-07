@@ -1,0 +1,37 @@
+<div class="CardProduct" is="joi-card-product">
+    {{ timberSetProduct(post) }}
+    {% if post.thumbnail %}
+        {{
+            renderComponent(
+                'Image',
+                {
+                    image: post.thumbnail,
+                    imageSize: 'shop',
+                    removeCrop: true
+                }
+            )
+        }}
+    {% endif %}
+    <div class="content">
+        {% do action('woocommerce_before_shop_loop_item_title') %}
+        <div class="category">
+            {{ post.terms('product_cat')|join(', ') }}
+        </div>
+        <h3>
+            {{ post.title }}
+        </h3>
+        {% if post.subtitle %}
+            <h4>
+                {{ post.subtitle }}
+            </h4>
+        {% endif %}
+        {% if post.short_description %}
+            <p>
+                {{ post.short_description }}
+            </p>
+        {% endif %}
+
+        {% do action('woocommerce_after_shop_loop_item_title') %}
+        {% do action('woocommerce_after_shop_loop_item') %}
+    </div>
+</div>

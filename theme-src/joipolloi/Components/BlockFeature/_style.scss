@@ -1,0 +1,13 @@
+@use "styles/base/mixins" as *;
+
+[is="joi-block-feature"] {
+  @include break-container;
+
+  .post-sidebar & {
+    margin: 0 auto;
+
+    .siteWidth {
+      padding: 0;
+    }
+  }
+}

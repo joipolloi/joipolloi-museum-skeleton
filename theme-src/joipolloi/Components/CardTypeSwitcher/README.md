@@ -1,0 +1,5 @@
+# CardTypeSwitcher
+
+| Property   |      Type      |   |
+|:----------|:-------------|:------|
+|   |   |   |
