@@ -23,6 +23,12 @@
   }
 
   .CardFeature {
+    height: 100%;
+
+    @include mq($from:tablet) {
+      height: auto;
+    }
+
     .content {
       padding-bottom: 100px;
 

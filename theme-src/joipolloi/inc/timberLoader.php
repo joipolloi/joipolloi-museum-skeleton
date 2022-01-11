@@ -80,3 +80,9 @@ add_action('timber/twig/filters', function ($twig) {
 
     return $twig;
 });
+
+add_filter('timber_context', function ($context) {
+    global $is_IE;
+    $context['is_IE'] = $is_IE;
+    return $context;
+});

@@ -13,19 +13,24 @@
     <body>
         <a href="#mainContent" class="skipLink">{{ __('Skip to main content', 'joi') }}</a>
         {% block layout %}
-            <div class="pageWrapper">
-                {{ renderComponent('Header') }}
-                <main id="mainContent" class="mainContent" aria-label="{{ __('Content', 'joi') }}">
-                    {% if function('post_password_required') %}
-                        {{ function('get_the_password_form') }}
-                    {% else %}
-                        {% block content %}
-                            No <code>{{ '{% block content %}' }}</code> defined for this template.
-                        {% endblock %}
-                    {% endif %}
-                </main>
-                {{ renderComponent('Footer') }}
-            </div>
+            {% if is_IE %}
+               <main id="mainContent" class="unsupported" aria-label="{{ __('Content', 'joi') }}">
+                Your browser isn't supported, please update to a modern browser</div>
+            {% else %}
+                <div class="pageWrapper">
+                    {{ renderComponent('Header') }}
+                    <main id="mainContent" class="mainContent" aria-label="{{ __('Content', 'joi') }}">
+                        {% if function('post_password_required') %}
+                            {{ function('get_the_password_form') }}
+                        {% else %}
+                            {% block content %}
+                                No <code>{{ '{% block content %}' }}</code> defined for this template.
+                            {% endblock %}
+                        {% endif %}
+                    </main>
+                    {{ renderComponent('Footer') }}
+                </div>
+            {% endif %}
         {% endblock %}
         <div class="wpFooter">
             {{ function('wp_footer') }}

@@ -190,6 +190,10 @@ li {
   flex-grow: 1;
 }
 
+.unsupported {
+  padding: 20px;
+}
+
 .siteWidth {
   @include center;
 
