@@ -7,15 +7,15 @@
 
   svg {
     margin-left: 7px;
-    stroke: color(white);
-    stroke-linecap: round;
-    stroke-width: 2px;
+    fill: color(white);
+    width: 29px;
+    height: 14px;
   }
 
   &:hover,
   &.button--selected {
     svg {
-      stroke: color(black);
+      fill: color(black);
     }
   }
 }

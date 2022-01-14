@@ -3,6 +3,7 @@
 namespace Joi\Events;
 
 use Carbon\Carbon;
+use WP_Query;
 
 add_filter('pre_get_posts', function ($query) {
     if ($query->is_main_query() && !is_admin() && is_post_type_archive('event')) {
@@ -31,34 +32,174 @@ function getEventQueryArgs($postsPerPage = 6, $pageNumber = 1)
         )
     );
 
-    $eventsTemp = get_posts(
+    $eventsTemp1 = get_posts(
         array(
         'post_type' => ['event'],
         'posts_per_page' => '-1',
         'meta_query' => array(
-        'relation' => 'AND',
-        array(
-            'key' => 'start_date',
-            'value' => '',
-            'compare' => '!='
+                'relation' => 'AND',
+                array(
+                    'key' => 'start_date',
+                    'compare' => 'EXISTS'
+                ),
+                array(
+                    'key' => 'start_date',
+                    'value' => '',
+                    'compare' => '!='
+                ),
+                array(
+                    'key'     => 'start_date',
+                    'value'   => $now,
+                    'compare' => '>='
+                ),
+                array(
+                    'key' => 'event_type',
+                    'value' => 'one-off',
+                    'compare' => '='
+                ),
             ),
-            array(
-                'key'     => 'start_date',
-                'value'   => $now,
-                'compare' => '>='
-            ),
-         array(
-            'key' => 'event_type',
-            'value' => array('one-off', 'limited-recurring', 'exhibition'),
-            'compare' => 'IN'
-            ),
-         ),
         'orderby' => 'meta_value',
         'meta_key' => 'start_date',
         'order' => 'ASC',
         'fields' => 'ids'
         )
     );
+
+    $eventsTemp2 = get_posts(
+        array(
+        'post_type' => ['event'],
+        'posts_per_page' => '-1',
+        'meta_query' => array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'start_date',
+                    'compare' => 'EXISTS'
+                ),
+                array(
+                    'key' => 'start_date',
+                    'value' => '',
+                    'compare' => '!='
+                ),
+                array(
+                    'key'     => 'start_date',
+                    'value'   => $now,
+                    'compare' => '>='
+                ),
+                array(
+                    'key' => 'event_type',
+                    'value' => array('limited-recurring', 'exhibition'),
+                    'compare' => 'IN'
+                ),
+            ),
+        'orderby' => 'meta_value',
+        'meta_key' => 'start_date',
+        'order' => 'ASC',
+        'fields' => 'ids'
+        )
+    );
+
+    $eventsTemp3 = get_posts(
+        array(
+        'post_type' => ['event'],
+        'posts_per_page' => '-1',
+        'meta_query' =>  array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'end_date',
+                    'compare' => 'EXISTS'
+                ),
+                array(
+                    'key' => 'end_date',
+                    'value' => '',
+                    'compare' => '!='
+                ),
+                array(
+                    'key'     => 'end_date',
+                    'value'   => $now,
+                    'compare' => '>='
+                ),
+                array(
+                    'key' => 'event_type',
+                    'value' => array('limited-recurring', 'exhibition'),
+                    'compare' => 'IN'
+                ),
+            ),
+        'orderby' => 'meta_value',
+        'meta_key' => 'start_date',
+        'order' => 'ASC',
+        'fields' => 'ids'
+        )
+    );
+
+    // $eventsTemp = get_posts(
+    //     array(
+    //     'post_type' => ['event'],
+    //     'posts_per_page' => '10',
+    //     'meta_query' => array(
+    //         'relation' => 'OR',
+    //         array(
+    //             'relation' => 'AND',
+    //             array(
+    //                 'key' => 'start_date',
+    //                 'value' => '',
+    //                 'compare' => '!='
+    //             ),
+    //             array(
+    //                 'key'     => 'start_date',
+    //                 'value'   => $now,
+    //                 'compare' => '>='
+    //             ),
+    //             array(
+    //                 'key' => 'event_type',
+    //                 'value' => 'one-off',
+    //                 'compare' => '='
+    //             ),
+    //         ),
+    //         array(
+    //             'relation' => 'AND',
+    //             array(
+    //                 'key' => 'start_date',
+    //                 'value' => '',
+    //                 'compare' => '!='
+    //             ),
+    //             array(
+    //                 'key'     => 'start_date',
+    //                 'value'   => $now,
+    //                 'compare' => '>='
+    //             ),
+    //             array(
+    //                 'key' => 'event_type',
+    //                 'value' => array('limited-recurring', 'exhibition'),
+    //                 'compare' => 'IN'
+    //             ),
+    //         ),
+    //         array(
+    //             'relation' => 'AND',
+    //             array(
+    //                 'key' => 'end_date',
+    //                 'value' => '',
+    //                 'compare' => '!='
+    //             ),
+    //             array(
+    //                 'key'     => 'end_date',
+    //                 'value'   => $now,
+    //                 'compare' => '>='
+    //             ),
+    //             array(
+    //                 'key' => 'event_type',
+    //                 'value' => array('limited-recurring', 'exhibition'),
+    //                 'compare' => 'IN'
+    //             ),
+    //         )
+    //     ),
+    //     'orderby' => 'meta_value',
+    //     'meta_key' => 'start_date',
+    //     'order' => 'ASC',
+    //     'fields' => 'ids'
+    //     )
+    // );
+
+    $eventsTemp = array_merge($eventsTemp1, $eventsTemp2, $eventsTemp3);
 
     $eventsPermNoPriority = get_posts(
         array(

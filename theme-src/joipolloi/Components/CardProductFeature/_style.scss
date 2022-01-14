@@ -9,6 +9,7 @@
 
   @include mq($from:tablet) {
     padding-top: 40px;
+    margin-bottom: calc($spacing * 2);
   }
 
   &::before {
@@ -25,7 +26,6 @@
     @include mq($from:tablet) {
       width: 85%;
       top: 0;
-      bottom: 10%;
     }
   }
 
@@ -55,6 +55,8 @@
       margin-right: 0;
       margin-left: 0;
       padding-top: 0;
+      align-self: flex-end;
+      margin-bottom: -#{$spacing};
     }
 
     .Image {

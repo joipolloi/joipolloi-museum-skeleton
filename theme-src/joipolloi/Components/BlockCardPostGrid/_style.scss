@@ -1,0 +1,10 @@
+@use "styles/base/variables" as *;
+@use "styles/base/mixins" as *;
+
+[is="joi-block-card-post-grid"] {
+  @include break-container;
+
+  h2 {
+    margin-bottom: 40px;
+  }
+}

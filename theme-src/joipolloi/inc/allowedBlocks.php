@@ -48,6 +48,7 @@ add_action('allowed_block_types_all', function ($allowed_block_types, $block_edi
         'acf/accordion',
         'acf/card-carousel',
         'acf/card-grid',
+        'acf/card-post-grid',
         'acf/explore-carousel',
         'acf/feature',
         'acf/feature-carousel',
