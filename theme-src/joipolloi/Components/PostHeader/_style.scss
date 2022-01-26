@@ -28,7 +28,7 @@
   > img,
   > picture,
   > video {
-    @include cover-image;
+    @include coverImage;
   }
 
   .content {

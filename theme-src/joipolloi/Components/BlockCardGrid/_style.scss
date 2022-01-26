@@ -2,7 +2,7 @@
 @use "styles/base/mixins" as *;
 
 [is="joi-block-card-grid"] {
-  @include break-container;
+  @include breakContainer;
 
   h2 {
     margin-bottom: 40px;

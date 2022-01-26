@@ -15,7 +15,7 @@
   }
 
   .menu {
-    @include reset-list;
+    @include resetList;
 
     .menu-link {
       color: color(black);

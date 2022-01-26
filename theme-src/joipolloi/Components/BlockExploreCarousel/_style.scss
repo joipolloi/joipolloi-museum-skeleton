@@ -5,7 +5,7 @@
 @use "sass:math";
 
 [is="joi-block-explore-carousel"] {
-  @include break-container;
+  @include breakContainer;
 
   .container {
     position: relative;

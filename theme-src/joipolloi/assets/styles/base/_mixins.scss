@@ -29,7 +29,7 @@
   padding-right: $padding;
 }
 
-@mixin break-container {
+@mixin breakContainer {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 
@@ -41,7 +41,7 @@
   }
 }
 
-@mixin reset-list {
+@mixin resetList {
   display: block;
   list-style: none;
   margin: 0;
@@ -86,7 +86,7 @@
   }
 }
 
-@mixin reset-grid {
+@mixin resetGrid {
   display: block;
 
   > * {
@@ -99,7 +99,7 @@
   }
 }
 
-@mixin aspect-ratio($width:null, $height:null) {
+@mixin aspectRatio($width:null, $height:null) {
   position: relative;
   overflow: hidden;
 
@@ -128,7 +128,7 @@
   }
 }
 
-@mixin cover-image {
+@mixin coverImage {
   position: absolute;
   top: 0;
   left: 0;
@@ -141,4 +141,15 @@
   min-height: 100%;
   max-height: 100%;
   object-fit: cover;
+}
+
+@mixin animateInView {
+  &.animate {
+    transform: translateX(15vw);
+
+    &--start {
+      transform: translateX(0);
+      transition: transform 0.8s cubic-bezier(0.42, 0, 0.002, 1);
+    }
+  }
 }

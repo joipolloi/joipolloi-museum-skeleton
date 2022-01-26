@@ -3,7 +3,7 @@
 
 [is="joi-navigation-quick-links"] {
   .menu {
-    @include reset-list;
+    @include resetList;
 
     li {
       margin-bottom: 10px;

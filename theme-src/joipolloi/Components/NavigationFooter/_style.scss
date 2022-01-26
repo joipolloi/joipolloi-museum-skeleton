@@ -4,7 +4,7 @@
 
 [is="joi-navigation-footer"] {
   .menu {
-    @include reset-list;
+    @include resetList;
 
     display: flex;
     flex-direction: column;

@@ -3,7 +3,7 @@
 @use "styles/base/mq" as *;
 
 [is="joi-more-to-explore"] {
-  @include break-container;
+  @include breakContainer;
 
   background: linear-gradient(0deg, color(mid-grey) 0%, color(mid-grey) 50%, color(black) 50%, color(black) 100%);
   padding: 50px 0;

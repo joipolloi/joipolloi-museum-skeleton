@@ -2,6 +2,6 @@
 
 [is="joi-image"] {
   &:not(.removeCrop) {
-    @include aspect-ratio(16, 9);
+    @include aspectRatio(16, 9);
   }
 }

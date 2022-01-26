@@ -20,7 +20,7 @@
   }
 
   .accessibility {
-    @include reset-list;
+    @include resetList;
 
     display: flex;
     align-items: center;

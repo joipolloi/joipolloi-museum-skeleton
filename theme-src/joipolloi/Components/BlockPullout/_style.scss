@@ -3,7 +3,7 @@
 @use "styles/base/mq" as *;
 
 [is="joi-block-pullout"] {
-  @include break-container;
+  @include breakContainer;
 
   padding: $spacing 0;
   background-color: color(red);

@@ -1,7 +1,7 @@
 @use "styles/base/mixins" as *;
 
 [is="joi-block-feature"] {
-  @include break-container;
+  @include breakContainer;
 
   .post-sidebar & {
     margin: 0 auto;

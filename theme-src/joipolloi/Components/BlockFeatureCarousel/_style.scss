@@ -4,7 +4,7 @@
 @use "styles/base/swiper" as *;
 
 [is="joi-block-feature-carousel"] {
-  @include break-container;
+  @include breakContainer;
 
   .swiper-nav {
     position: absolute;
