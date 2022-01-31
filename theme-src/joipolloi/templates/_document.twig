@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="html {{ body_class }}" lang="{{ site.language }}">
+<html class="html {{ body_class }}" {{ site.language_attributes }}>
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,24 +13,19 @@
     <body>
         <a href="#mainContent" class="skipLink">{{ __('Skip to main content', 'joi') }}</a>
         {% block layout %}
-            {% if is_IE %}
-               <main id="mainContent" class="unsupported" aria-label="{{ __('Content', 'joi') }}">
-                Your browser isn't supported, please update to a modern browser</div>
-            {% else %}
-                <div class="pageWrapper">
-                    {{ renderComponent('Header') }}
-                    <main id="mainContent" class="mainContent" aria-label="{{ __('Content', 'joi') }}">
-                        {% if function('post_password_required') %}
-                            {{ function('get_the_password_form') }}
-                        {% else %}
-                            {% block content %}
-                                No <code>{{ '{% block content %}' }}</code> defined for this template.
-                            {% endblock %}
-                        {% endif %}
-                    </main>
-                    {{ renderComponent('Footer') }}
-                </div>
-            {% endif %}
+            <div class="pageWrapper">
+                {{ renderComponent('Header') }}
+                <main id="mainContent" class="mainContent" aria-label="{{ __('Content', 'joi') }}">
+                    {% if function('post_password_required') %}
+                        {{ function('get_the_password_form') }}
+                    {% else %}
+                        {% block content %}
+                            No <code>{{ '{% block content %}' }}</code> defined for this template.
+                        {% endblock %}
+                    {% endif %}
+                </main>
+                {{ renderComponent('Footer') }}
+            </div>
         {% endblock %}
         <div class="wpFooter">
             {{ function('wp_footer') }}
