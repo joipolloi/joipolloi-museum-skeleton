@@ -5,3 +5,5 @@ wp-config-local.php
 wp-config.php
 
 /vendor/
+
+.DS_Store
