@@ -5,16 +5,15 @@
   "main": "index.js",
   "license": "UNLICENSED",
   "dependencies": {
-    "hygen": "^6.1.0",
-    "prettier-plugin-twig-melody": "^0.4.6"
+    "hygen": "^6.1.0"
   },
   "workspaces": {
     "packages": [
       "theme-src/*"
     ],
     "nohoist": [
-            "**/del"
-        ]
+      "**/del"
+    ]
   },
   "engines": {
     "node": ">=16.*"

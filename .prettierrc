@@ -3,9 +3,6 @@
     "singleQuote": true,
     "useTabs": false,
     "tabWidth": 4,
-    "plugins": [
-        "./node_modules/prettier-plugin-twig-melody"
-    ],
     "twigPrintWidth": 120,
     "twigMultiTags": [
         "nav,endnav",

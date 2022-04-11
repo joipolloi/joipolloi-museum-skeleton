@@ -1,7 +1,7 @@
 {
     "breadcrumbs.enabled": true,
     "css.validate": true,
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
@@ -10,7 +10,6 @@
         "editor.defaultFormatter": "valeryanm.vscode-phpsab",
         "editor.formatOnSave": true
     },
-    "prettier.prettierPath": "/Users/marcuswilliams/.nvm/versions/node/v14.15.4/lib/node_modules/prettier",
     "prettier.configPath": ".prettierrc",
     "prettier.requireConfig": true,
     "eslint.validate": [
@@ -26,7 +25,7 @@
     "phpsab.snifferShowSources": true,
     "phpsab.executablePathCBF": "./theme-src/joipolloi/vendor/squizlabs/php_codesniffer/bin/phpcbf",
     "[twig]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.defaultFormatter": "mblode.twig-language-2",
         "editor.formatOnSave": true
     },
     "[javascript]": {
@@ -38,6 +37,8 @@
         "editor.codeActionsOnSave": {
             "source.fixAll.stylelint": true
         }
+    },"files.associations": {
+        "*.html": "twig"
     },
     "emmet.includeLanguages": {
         "twig": "html"
@@ -46,5 +47,8 @@
         "css",
         "scss",
         "postcss"
-    ]
+    ],
+    "prettier.tabWidth": 4,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "twig-language-2.indentStyle": "space"
 }
