@@ -13,6 +13,7 @@ This repository should only be used as an upstream source for projects.
 -   clone repo
 -   `cd theme-src/joipolloi && composer install && cd ../../`
 -   Copy `wordpress/wp-config-local-sample.php` and rename to `wordpress/wp-config-local.php` and update setting to make your local database
+-   Copy `wordpress/wp-config-sample.php` and rename to `wordpress/wp-config.php`
 -   Setup MAMP Document root to the wordpress directory
 -   `yarn` **(from the root directory)**
 -   `yarn watch` to build a dev version, start up a dev server and watch files

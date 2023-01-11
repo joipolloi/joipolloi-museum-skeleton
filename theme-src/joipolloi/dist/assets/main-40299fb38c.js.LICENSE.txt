@@ -1,3 +1,0 @@
-/*! (c) Andrea Giammarchi @webreflection ISC */
-
-/*! js-cookie v3.0.1 | MIT */

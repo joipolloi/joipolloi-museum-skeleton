@@ -35,5 +35,10 @@
     "psr-4": {
       "Joi\\": "lib/"
     }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
   }
 }

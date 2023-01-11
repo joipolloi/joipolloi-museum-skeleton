@@ -67,6 +67,12 @@ if ( window.jQuery ) {
 
 		container.removeClass('qm-no-js').addClass('qm-js');
 
+		var theme = localStorage.getItem( 'qm-theme' );
+		if ( theme ) {
+			container.attr('data-theme', theme);
+			$('.qm-theme-toggle[value="' + theme + '"]').prop('checked', true);
+		}
+
 		if ( $('#qm-fatal').length ) {
 			console.error(qm_l10n.fatal_error + ': ' + $('#qm-fatal').attr('data-qm-message') );
 
@@ -460,6 +466,11 @@ if ( window.jQuery ) {
 			e.preventDefault();
 		});
 
+		$('.qm-theme-toggle').on('click',function(e){
+			container.attr('data-theme',$(this).val());
+			localStorage.setItem('qm-theme',$(this).val());
+		});
+
 		$.qm.tableSort({target: $('.qm-sortable')});
 
 		var startY, startX, resizerHeight;
@@ -661,7 +672,7 @@ if ( window.jQuery ) {
 					var desc = ! $(this).hasClass('qm-sorted-desc');
 					var index = $(this).index();
 
-					table.find('thead th').removeClass('qm-sorted-asc qm-sorted-desc').attr('aria-sort','none');
+					table.find('thead th').removeClass('qm-sorted-asc qm-sorted-desc').removeAttr('aria-sort');
 
 					if ( desc ) {
 						$(this).addClass('qm-sorted-desc').attr('aria-sort','descending');

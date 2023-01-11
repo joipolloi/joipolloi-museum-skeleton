@@ -1,12 +1,12 @@
 # Query Monitor
 Contributors: johnbillion
-Tags: debug, debug-bar, debugging, development, developer, performance, profiler, queries, query monitor, rest-api
-Requires at least: 3.7
-Tested up to: 5.9
-Stable tag: 3.8.2
+Tags: debug, debug-bar, development, performance, query monitor, rest-api
+Requires at least: 4.9
+Tested up to: 6.1
+Stable tag: 3.11.1
 License: GPLv2 or later
-Requires PHP: 5.3
-Donate link: https://johnblackbourn.com/donations/
+Requires PHP: 7.2
+Donate link: https://github.com/sponsors/johnbillion
 
 Query Monitor is the developer tools panel for WordPress.
 
@@ -72,7 +72,7 @@ Query Monitor is private by default and always will be. It does not persistently
 
 ### Does this plugin work with PHP 8?
 
-Yes.
+Yes, it's actively tested and working up to PHP 8.2.
 
 ### Who can access Query Monitor's output?
 
@@ -94,7 +94,7 @@ Yes, if anything calls `do_action( 'qm/cease' )` then Query Monitor will cease o
 
 This is useful for long-running operations that perform a very high number of database queries, consume a lot of memory, or otherwise are of no concern to Query Monitor, for example:
 
-* Backuping up or restoring your site
+* Backing up or restoring your site
 * Exporting a large amount of data
 * Running security scans
 
@@ -141,10 +141,50 @@ In addition, if you like the plugin then I'd love for you to [leave a review](ht
 
 ## Changelog ##
 
+### 3.11.1 ###
+
+* Avoids a fatal error in PHP 8 when `posix_getpwuid()` or `posix_getgrgid()` doesn't return an expected value.
+
+### 3.11.0 ###
+
+* Adds a new "Multisite" panel that shows usage of `switch_to_blog()` and `restore_current_blog()` on Multisite installations
+* Improves the output shown for blocks and template parts when block themes or full site editing is in use
+* Introduces new `QM_Data` and `QM_Component` classes to make the data collection more structured and reliable
+* Increases the minimum supported version of PHP to 7.2
+* Improves the performance of SVG icons
+* Removes the ability to completely hide silenced PHP errors
+* Avoids some deprecated notices in PHP 8.2
+* Improves the performance of the PHP class autoloader
+
+### 3.10.1 ###
+
+* Prevents logging duplicate entries for multiple calls to load the same translation file
+* Brings the dispatcher priority back down to 9 for maximum compatibility with other plugins that use a shutdown handler
+
+
+### 3.10.0 ###
+
+* Adds information about the current language on the Languages panel
+* Reduces the chance that Query Monitor blames itself for PHP errors that don't have a stack trace
+* Replaces the use of Dashicons with inline SVGs and removes the `dashicons` dependency
+* Switches to class autoloading via Composer for reduced memory usage
+* Changes the priority of the `shutdown` dispatcher from `0` to `PHP_INT_MAX` to ensure as much data as possible is collected
+* Improves the styling of Debug Bar add-ons
+* Fixes some erroneous localisation of float values in REST API output
+* Bumps the minimum supported PHP version to 5.6
+* Improves various other bits and bobs
+
+### 3.9.0 ###
+
+* Introduces a dark mode toggle on the Settings panel, which replaces the `QM_DARK_MODE` constant
+* Prevents errors with undefined constants being reported in `db.php`
+* Adds more comprehensive handling of unexpected values in stack traces
+* Fixes PHP Warning 'Header may not contain NUL bytes' when outputting headers
+
 ### 3.8.2 ###
 
-* Fix some deprecated notices with PHP 8.1
-* Improve the handling of SQL queries that consist only of MySQL comments
+* Fixes some deprecated notices with PHP 8.1
+* Improves the handling of SQL queries that consist only of MySQL comments
 
 ### 3.8.1 ###
 
@@ -362,68 +402,3 @@ In addition, if you like the plugin then I'd love for you to [leave a review](ht
 * Force the `Core` and `Non-Core` filter items to the bottom of the list, so plugins and themes takes precedence.
 * Add an entry for the Settings screen to the narrow view nav menu.
 * Add the admin notice hooks to the list of concerned actions for the Admin Screen panel.
-
-### 3.3.0 ###
-
-New features! Read about them here: https://querymonitor.com/blog/2019/02/new-features-in-query-monitor-3-3/
-
-* Introduce sub-menus for displaying Hooks in Use for each panel.
-* Output the call stack and responsible component when `wp_die()` is called.
-* Support for JavaScript (Jed) translations in WordPress 5.0+.
-* Add render timing for blocks using the new hooks introduced in WordPress 5.1.
-* Introduce a toggle to display QM on the side of the window.
-* Allow non-string values to be used in the logger message. They'll be presented as JSON formatted strings.
-* Allow boolean values to be used in log message contexts.
-* Add some margin to the Close button so it doesn't get covered up so much by scroll bars.
-* Prefix QM's cookie name with `wp-` to ensure interoperability with caches and proxies.
-* Separate the Scripts and Styles collector and outputter so they're actually two separate panels.
-* Add support for opcode cache detection separate from the object cache detection.
-* Rename the main QM container to get around the fact that its name clashes with the plugin rows in older versions of WordPress.
-* Avoid using `wp_parse_url()` as it was only introduced in WP 4.4.
-
-
-### 3.2.2 ###
-
-* Support for nested content blocks (eg. in columns).
-* Hide long innerHTML content of blocks behind a toggle.
-* Add validation of the referenced media file in media blocks.
-* Ensure asset URLs include the `ver` query arg.
-* Tweak the warning colours.
-* Coding standards.
-* Layout tweaks.
-
-
-### 3.2.1 ###
-
-* Fix a fatal error for < 5.0 sites that are not running the Gutenberg plugin.
-
-### 3.2.0 ###
-
-* Add a new `Blocks` panel for debugging blocks in post content. Supports WordPress 5.0 and the Gutenberg plugin.
-* Display the number of times that each template part was included.
-* Allow the scripts and styles output to be filtered based on Dependencies and Dependents.
-* Remove the `Pin` button in favour of always pinning QM when it's open.
-* Add a "Settings" link to the Plugins screen that opens the settings panel.
-* Add a link to the Add-ons page on the wiki.
-* Add some more verbose and visible error notices for suboptimal PHP configuration directives.
-* Add support for identifying any RDBMS, not just MySQL and MariaDB.
-* Perform the PHP version check earlier on so that fewer parts of QM need to be compatible with PHP 5.2.
-* Highlight plain `http` requests to the HTTP API as insecure.
-* Ensure the `Template` admin menu is always shown, even if the template file name isn't known.
-* Adjust the JS and CSS asset source to not include the host.
-* Add a warning for insecure JS and CSS assets.
-* Remove before and after pseudo-elements in the style reset.
-* Show as much theme and template information as possible, even if QM doesn't know the template name.
-* Highlight non-core rows when filtering the Hooks & Actions panel by Non-Core.
-* Add a filter for environment constants.
-* Min width CSS for buttons.
-* First pass at documenting filters and hooks.
-* More coding standards updates.
-
-### 3.1.1 ###
-
-* Add a dark mode for the UI which is used via the Dark Mode plugin.
-* Display Query Monitor's output in the user's selected language, instead of the site language.
-* Add extended support for the Members and User Role Editor plugins.
-* Fix link hover and focus styles.
-* Reset some more CSS styles.

@@ -1,22 +1,23 @@
-@use "styles/base/mq-settings" as *;
-@use "styles/base/variables" as *;
+@use 'styles/base/mq-settings' as *;
+@use 'styles/base/variables' as *;
 // stylelint-disable-next-line scss/at-import-no-partial-leading-underscore, scss/at-import-partial-extension-blacklist, scss/at-import-partial-extension
-@use "../Components/**/_admin.scss";
+@use '../Components/**/_admin.scss';
 
 html {
-  font-family: $font-family;
+    font-family: $font-family;
 }
 
 .acf-field {
-  .components-circular-option-picker__option {
-    padding: 0;
-  }
+    .components-circular-option-picker__option {
+        padding: 0;
+    }
 }
 
 .acf-field-editor-palette .acf-input ul {
-  padding-left: 0;
+    padding-left: 0;
 }
 
-.components-circular-option-picker .components-circular-option-picker__custom-clear-wrapper {
-  justify-content: flex-start;
+.components-circular-option-picker
+    .components-circular-option-picker__custom-clear-wrapper {
+    justify-content: flex-start;
 }
