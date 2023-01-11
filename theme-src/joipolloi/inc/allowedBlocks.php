@@ -30,6 +30,7 @@ add_action('allowed_block_types_all', function ($allowed_block_types, $block_edi
     // }
 
     return array(
+        'core/gallery',
         'core/image',
         'core/quote',
         'core/embed',
@@ -37,6 +38,7 @@ add_action('allowed_block_types_all', function ($allowed_block_types, $block_edi
         'core/paragraph',
         'core/heading',
         'core/list',
+        'core/list-item',
         'core/group',
         'core/buttons',
         'core/shortcode',

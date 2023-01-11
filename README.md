@@ -20,7 +20,7 @@ This repository should only be used as an upstream source for projects.
 
 ### Database
 
-A relatively stripped back database to begin with is located at https://www.dropbox.com/s/zagi7mewdvupfoy/base-database.sql?dl=0. This may have some project specific terms but overall it'll be a good baseline to work from. The administrator account has username "admin" and password "password" - make sure this is changed before the project is moved to any live hosting. You will also need to update the site URL, home URL, site name and admin email.
+A relatively stripped back database to begin with is located at https://www.dropbox.com/s/oxo0sgpta5zaoi2/jp_wordpress_skeleton.sql?dl=0. This may have some project specific terms but overall it'll be a good baseline to work from. The administrator account has username "admin" and password "password" - make sure this is changed before the project is moved to any live hosting. You will also need to update the site URL, home URL, site name and admin email.
 
 ### Components
 
