@@ -18,7 +18,9 @@ function formatEventDate($type, $startDate, $startTime, $endDate, $endTime, $fre
         $startDateString = $startTime ? "{$startDate} {$startTime}" : "{$startDate} 00:00:00";
         $start = Carbon::createFromFormat('Ymd H:i:s', $startDateString, $tz);
         $diffDays = $now->diffInDays($start);
-        if ($diffDays > 6) {
+        if ($start->format('Ymd') < $now->format('Ymd')) {
+            return $start->format('l, jS M Y, G:i');
+        } else if ($diffDays > 6) {
             return $start->format('l, jS M Y, G:i');
         } else if ($diffDays <= 1) {
             // Is tomorrow or today
