@@ -15,26 +15,27 @@ function getEventQueryArgs($postsPerPage = 6, $pageNumber = 1)
 {
 
     $now =  Carbon::now('Europe/London');
+    $start = $now->format('Ymd');
 
     $eventsGlobal = get_posts(
         array(
         'post_type' => ['event'],
         'posts_per_page' => '-1',
         'meta_query' => array(
-        'relation' => 'AND',
-         array(
-            'key' => 'event_type',
-            'value' => array('museum'),
-            'compare' => 'IN'
+            'relation' => 'AND',
+            array(
+                'key' => 'event_type',
+                'value' => array('museum'),
+                'compare' => 'IN'
+                ),
             ),
-         ),
-        'fields' => 'ids'
+            'fields' => 'ids'
         )
     );
 
     $eventsTemp1 = get_posts(
         array(
-        'post_type' => ['event'],
+        'post_type' => 'event',
         'posts_per_page' => '-1',
         'meta_query' => array(
                 'relation' => 'AND',
@@ -49,8 +50,9 @@ function getEventQueryArgs($postsPerPage = 6, $pageNumber = 1)
                 ),
                 array(
                     'key'     => 'start_date',
-                    'value'   => $now,
-                    'compare' => '>='
+                    'value'   => $start,
+                    'compare' => '>=',
+                    'type' => 'DATE'
                 ),
                 array(
                     'key' => 'event_type',
@@ -82,8 +84,9 @@ function getEventQueryArgs($postsPerPage = 6, $pageNumber = 1)
                 ),
                 array(
                     'key'     => 'start_date',
-                    'value'   => $now,
-                    'compare' => '>='
+                    'value'   => $start,
+                    'compare' => '>=',
+                    'type' => 'DATE'
                 ),
                 array(
                     'key' => 'event_type',
@@ -115,8 +118,9 @@ function getEventQueryArgs($postsPerPage = 6, $pageNumber = 1)
                 ),
                 array(
                     'key'     => 'end_date',
-                    'value'   => $now,
-                    'compare' => '>='
+                    'value'   => $start,
+                    'compare' => '>=',
+                    'type' => 'DATE'
                 ),
                 array(
                     'key' => 'event_type',
@@ -130,74 +134,6 @@ function getEventQueryArgs($postsPerPage = 6, $pageNumber = 1)
         'fields' => 'ids'
         )
     );
-
-    // $eventsTemp = get_posts(
-    //     array(
-    //     'post_type' => ['event'],
-    //     'posts_per_page' => '10',
-    //     'meta_query' => array(
-    //         'relation' => 'OR',
-    //         array(
-    //             'relation' => 'AND',
-    //             array(
-    //                 'key' => 'start_date',
-    //                 'value' => '',
-    //                 'compare' => '!='
-    //             ),
-    //             array(
-    //                 'key'     => 'start_date',
-    //                 'value'   => $now,
-    //                 'compare' => '>='
-    //             ),
-    //             array(
-    //                 'key' => 'event_type',
-    //                 'value' => 'one-off',
-    //                 'compare' => '='
-    //             ),
-    //         ),
-    //         array(
-    //             'relation' => 'AND',
-    //             array(
-    //                 'key' => 'start_date',
-    //                 'value' => '',
-    //                 'compare' => '!='
-    //             ),
-    //             array(
-    //                 'key'     => 'start_date',
-    //                 'value'   => $now,
-    //                 'compare' => '>='
-    //             ),
-    //             array(
-    //                 'key' => 'event_type',
-    //                 'value' => array('limited-recurring', 'exhibition'),
-    //                 'compare' => 'IN'
-    //             ),
-    //         ),
-    //         array(
-    //             'relation' => 'AND',
-    //             array(
-    //                 'key' => 'end_date',
-    //                 'value' => '',
-    //                 'compare' => '!='
-    //             ),
-    //             array(
-    //                 'key'     => 'end_date',
-    //                 'value'   => $now,
-    //                 'compare' => '>='
-    //             ),
-    //             array(
-    //                 'key' => 'event_type',
-    //                 'value' => array('limited-recurring', 'exhibition'),
-    //                 'compare' => 'IN'
-    //             ),
-    //         )
-    //     ),
-    //     'orderby' => 'meta_value',
-    //     'meta_key' => 'start_date',
-    //     'order' => 'ASC',
-    //     'fields' => 'ids'
-    //     )
-    // );
 
     $eventsTemp = array_merge($eventsTemp1, $eventsTemp2, $eventsTemp3);
 
@@ -291,11 +227,11 @@ function getEventQueryArgs($postsPerPage = 6, $pageNumber = 1)
     }
 
     $args = array(
-    'post_type' => ['event', 'advert'],
-    'post__in' => $newArray,
-    'orderby' => 'post__in',
-    'posts_per_page' => $postsPerPage,
-    'paged' => $pageNumber
+        'post_type' => ['event'],
+        'post__in' => $newArray,
+        'orderby' => 'post__in',
+        'posts_per_page' => $postsPerPage,
+        'paged' => $pageNumber
     );
 
     return $args;
