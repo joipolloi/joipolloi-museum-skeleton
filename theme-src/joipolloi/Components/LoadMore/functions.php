@@ -15,7 +15,8 @@ function loadMorePosts()
     $posts = Timber::get_posts(array(
       'post_type' => $postType,
       'posts_per_page' => $pageNumber == 1 ? 7 : 6,
-      'paged' => $pageNumber
+      'paged' => $pageNumber,
+      'post_status' => array( 'publish' )
     ));
 
     foreach ($posts as $post) {
