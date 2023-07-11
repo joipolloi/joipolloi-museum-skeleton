@@ -1,0 +1,34 @@
+{% extends 'templates/_document.twig' %}
+
+{% block content %}
+ <div class="PageHeader">
+  <div class="siteWidth">
+   {% if title %}
+    <h1>
+     {{ title }}
+    </h1>
+   {% endif %}
+  </div>
+ </div>
+ <section class="PageContent siteWidth">
+  {{
+            renderComponent(
+                'GridPostsArchive',
+                {
+                    posts: posts,
+                    itemComponent: 'CardTypeSwitcher'
+                }
+            )
+        }}
+ </section>
+ {{
+        renderComponent(
+            'LoadMoreEvents',
+            {
+                pagination: posts.pagination,
+                container: '.post-type-archive-event .GridPostsArchive .grid'
+            }
+        )
+    }}
+
+{% endblock %}

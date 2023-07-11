@@ -18,9 +18,7 @@ function formatEventDate($type, $startDate, $startTime, $endDate, $endTime, $fre
         $startDateString = $startTime ? "{$startDate} {$startTime}" : "{$startDate} 00:00:00";
         $start = Carbon::createFromFormat('Ymd H:i:s', $startDateString, $tz);
         $diffDays = $now->diffInDays($start);
-        if ($start->format('Ymd') < $now->format('Ymd')) {
-            return $start->format('l, jS M Y, G:i');
-        } else if ($diffDays > 6) {
+        if ($diffDays > 6) {
             return $start->format('l, jS M Y, G:i');
         } else if ($diffDays <= 1) {
             // Is tomorrow or today
@@ -33,7 +31,7 @@ function formatEventDate($type, $startDate, $startTime, $endDate, $endTime, $fre
 
     if ($type == 'limited-recurring') {
         $start = Carbon::createFromFormat('Ymd', $startDate, $tz);
-        $end = Carbon::createFromFormat('Ymd', $endDate, $tz);
+        $end = $endDate ? Carbon::createFromFormat('Ymd', $endDate, $tz) : null;
         $diffDays = $now->diffInDays($start);
 
         if ($recurringOptions) {
@@ -48,52 +46,56 @@ function formatEventDate($type, $startDate, $startTime, $endDate, $endTime, $fre
 
         if ($diffDays > 6) {
             // More than a week
-            if ($start->year != $end->year) {
+            $startFormat = $start->format('jS M Y');
+
+            if ($end && $start->year != $end->year) {
             // Spans multiple years
                 $startFormat = $start->format('jS M Y');
                 $endFormat = $end->format('jS M Y');
-            } else if ($start->month == $end->month) {
+            } else if ($end && $start->month == $end->month) {
                 //Same month
                 $startFormat = $start->format('jS');
                 $endFormat = $end->format('jS M Y');
-            } else {
+            } else if ($end) {
                 $startFormat = $start->format('jS M');
                 $endFormat = $end->format('jS M Y');
             }
 
-            return "{$recurringText}{$startFormat} - {$endFormat}";
+            return $end ? "{$recurringText}{$startFormat} - {$endFormat}" : "{$recurringText}{$startFormat}";
         } else {
             // less than a week
             if ($diffDays <= 1) {
             // Is tomorrow or today
                 $startFormat = $start->format('\S\t\a\r\t\s l');
                 return "{$recurringText}{$startFormat}";
-            } else {
+            } else if ($end) {
                 $startFormat =  $start->format('\T\h\i\s l');
                 $endFormat = $end->format('jS M Y');
                 return "{$recurringText}{$startFormat} until {$endFormat}";
+            } else {
+                $startFormat =  $start->format('\T\h\i\s l');
+                return "{$recurringText}{$startFormat}}";
             }
         }
     }
 
     if ($type == 'exhibition') {
         $start = Carbon::createFromFormat('Ymd', $startDate, $tz);
-        $end = Carbon::createFromFormat('Ymd', $endDate, $tz);
+        $startFormat = $start->format('jS M');
+        if ($endDate) {
+            $end = Carbon::createFromFormat('Ymd', $endDate, $tz);
+            $endFormat = $end->format('jS M Y');
 
-        if ($start->year != $end->year) {
+            if ($start->year != $end->year) {
             // Spans multiple years
-            $startFormat = $start->format('jS M Y');
-            $endFormat = $end->format('jS M Y');
-        } else if ($start->month == $end->month) {
-            //Same month
-            $startFormat = $start->format('jS');
-            $endFormat = $end->format('jS M Y');
-        } else {
-            $startFormat = $start->format('jS M');
-            $endFormat = $end->format('jS M Y');
+                $startFormat = $start->format('jS M Y');
+            } else if ($start->month == $end->month) {
+                //Same month
+                $startFormat = $start->format('jS');
+            }
         }
 
-        return "{$startFormat} - {$endFormat}";
+        return $endDate ? "{$startFormat} - {$endFormat}" : $startFormat;
     }
 
     if ($type == 'recurring' && $frequency) {

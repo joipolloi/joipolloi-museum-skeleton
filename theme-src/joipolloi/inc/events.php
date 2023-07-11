@@ -22,14 +22,14 @@ function getEventQueryArgs($postsPerPage = 6, $pageNumber = 1)
         'post_type' => ['event'],
         'posts_per_page' => '-1',
         'meta_query' => array(
-            'relation' => 'AND',
-            array(
-                'key' => 'event_type',
-                'value' => array('museum'),
-                'compare' => 'IN'
-                ),
+        'relation' => 'AND',
+         array(
+            'key' => 'event_type',
+            'value' => array('museum'),
+            'compare' => 'IN'
             ),
-            'fields' => 'ids'
+         ),
+        'fields' => 'ids'
         )
     );
 
@@ -227,7 +227,7 @@ function getEventQueryArgs($postsPerPage = 6, $pageNumber = 1)
     }
 
     $args = array(
-        'post_type' => ['event'],
+        'post_type' => ['event', 'advert'],
         'post__in' => $newArray,
         'orderby' => 'post__in',
         'posts_per_page' => $postsPerPage,
