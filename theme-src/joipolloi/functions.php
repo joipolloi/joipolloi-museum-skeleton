@@ -4,7 +4,7 @@ namespace Joi;
 
 use Joi\Utils\FileLoader;
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once WP_CONTENT_DIR . '/../../vendor/autoload.php';
 
 if (!defined('WP_ENV')) {
     define('WP_ENV', function_exists('wp_get_environment_type') ? wp_get_environment_type() : 'production');

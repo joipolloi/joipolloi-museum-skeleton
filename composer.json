@@ -33,7 +33,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Joi\\": "lib/"
+      "Joi\\": "wordpress/wp-content/themes/joipolloi/lib/"
     }
   },
   "config": {
