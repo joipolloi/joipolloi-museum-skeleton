@@ -9,7 +9,7 @@ add_action('wp_ajax_nopriv_load_more_posts', 'Joi\Components\LoadMore\loadMorePo
 
 function loadMorePosts()
 {
-    $pageNumber = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 1;
+    $pageNumber = (is_int($_POST['pageNumber'])) ? $_POST['pageNumber'] : 1;
     $postType = (isset($_POST['postType'])) ? $_POST['postType'] : 'post';
 
     $posts = Timber::get_posts(array(
