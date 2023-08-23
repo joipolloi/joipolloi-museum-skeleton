@@ -1,6 +1,6 @@
-<a href="{{ post.link }}" class="CardEvent" is="joi-card-event">
- <div class="image">
-  {{
+<div class="CardEvent" is="joi-card-event">
+    <div class="image">
+        {{
             renderComponent(
                 'Image',
                 {
@@ -9,26 +9,26 @@
                 }
             )
         }}
-  {% if post.online %}
-   <div class="icons">
-    <span class="pill pill--small pill--solid">
-     Online
-    </span>
-   </div>
-  {% endif %}
- </div>
- <div class="content">
-  {% if smallTitle %}
-   <h2 class="h4">
-    {{ post.title }}
-   </h2>
-  {% else %}
-   <h2 class="h3">
-    {{ post.title }}
-   </h2>
-  {% endif %}
-  {% set recurring_options = post.meta('recurring_options') %}
-  {% set date =
+        {% if post.online %}
+            <div class="icons">
+                <span class="pill pill--small pill--solid">
+                    Online
+                </span>
+            </div>
+        {% endif %}
+    </div>
+    <div class="content">
+        {% if smallTitle %}
+            <h2 class="h4">
+                {{ post.title }}
+            </h2>
+        {% else %}
+            <h2 class="h3">
+                {{ post.title }}
+            </h2>
+        {% endif %}
+        {% set recurring_options = post.meta('recurring_options') %}
+        {% set date =
             formatEventDate(
                 post.event_type,
                 post.start_date,
@@ -39,33 +39,37 @@
                 recurring_options
             )
         %}
-  {% set duration = post.duration ? ", #{formatDuration(post.duration)}" : '' %}
-  {% if date %}
-   <div class="date">
-    <svg class="calendar-icon" xmlns="http://www.w3.org/2000/svg" width="13.938" height="15.929" viewbox="0 0 13.938 15.929">
-     <path d="M4.729 1.991h4.48V.747a.747.747 0 0 1 1.493 0v1.244h1.244a1.992 1.992 0 0 1 1.991 1.991v9.956a1.993 1.993 0 0 1-1.991 1.991H1.991A1.992 1.992 0 0 1 0 13.938V3.982a1.991 1.991 0 0 1 1.991-1.991h1.245V.747a.747.747 0 0 1 1.493 0ZM1.493 13.938a.5.5 0 0 0 .5.5h9.956a.5.5 0 0 0 .5-.5V5.974H1.493Z"/>
-    </svg>
+        {% set duration = post.duration ? ", #{formatDuration(post.duration)}" : '' %}
+        {% if date %}
+            <div class="date">
+                <svg class="calendar-icon" xmlns="http://www.w3.org/2000/svg" width="13.938" height="15.929" viewbox="0 0 13.938 15.929">
+                    <path d="M4.729 1.991h4.48V.747a.747.747 0 0 1 1.493 0v1.244h1.244a1.992 1.992 0 0 1 1.991 1.991v9.956a1.993 1.993 0 0 1-1.991 1.991H1.991A1.992 1.992 0 0 1 0 13.938V3.982a1.991 1.991 0 0 1 1.991-1.991h1.245V.747a.747.747 0 0 1 1.493 0ZM1.493 13.938a.5.5 0 0 0 .5.5h9.956a.5.5 0 0 0 .5-.5V5.974H1.493Z"/>
+                </svg>
 
-    {{ date }}
-    {{ duration }}
-   </div>
-  {% endif %}
-  {% if post.short_description %}
-   <p>
-    {{ post.short_description }}
-   </p>
-  {% endif %}
-  <div class="links">
-   {% if post.book_now %}
-    {% set link = post.meta('book_now_link') %}
-    <span class="pill pill--small pill--solid">
-     Booking required
-    </span>
-   {% endif %}
-   {% set customLinkTitle = post.link_text ? post.link_text : 'More details' %}
-   <span class="link">
-    {{ customLinkTitle }}
-   </span>
-  </div>
- </div>
-</a>
+                {{ date }}
+                {{ duration }}
+            </div>
+        {% endif %}
+        {% if post.short_description %}
+            <p>
+                {{ post.short_description }}
+            </p>
+        {% endif %}
+        <div class="links">
+            {% if post.book_now %}
+                {% set link = post.meta('book_now_link') %}
+                <span class="pill pill--small pill--solid">
+                    Booking required
+                </span>
+            {% endif %}
+            {% set customLinkTitle = post.link_text ? post.link_text : 'More details' %}
+            <span class="link">
+                {{ customLinkTitle }}
+            </span>
+        </div>
+    </div>
+
+    <a href="{{ post.link }}" class="CardEvent" is="joi-card-event">
+        <span class="vh">{{ post.title }}</span>
+    </a>
+</div>

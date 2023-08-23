@@ -1,48 +1,57 @@
-@use "sass:color";
-@use "sass:map";
-@use "styles/base/variables" as *;
-@use "~sass-rem" as rem;
-@use "styles/base/mq" as *;
+@use 'sass:color';
+@use 'sass:map';
+@use 'styles/base/variables' as *;
+@use '~sass-rem' as rem;
+@use 'styles/base/mq' as *;
 
-[is="joi-card-post"] {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  font-weight: normal;
+[is='joi-card-post'] {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    font-weight: normal;
+    position: relative;
 
-  .content {
-    background-color: color.invert($color-background);
-    color: color.invert($color-text);
-    padding: rem.convert(10px);
-
-    h3,
-    h4,
-    a,
-    .link {
-      color: color.invert($color-text);
-    }
-  }
-
-  .list-view &,
-  .search-results & {
-    margin-bottom: $spacing;
-
-    @include mq($from: tablet) {
-      flex-direction: row;
-    }
-
-    .image {
-      @include mq($from: tablet) {
-        width: 25%;
-        margin-right: $spacing;
-      }
+    a {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
     .content {
-      @include mq($from: tablet) {
-        padding: 0;
-        flex: 1;
-      }
+        background-color: color.invert($color-background);
+        color: color.invert($color-text);
+        padding: rem.convert(10px);
+
+        h3,
+        h4,
+        a,
+        .link {
+            color: color.invert($color-text);
+        }
     }
-  }
+
+    .list-view &,
+    .search-results & {
+        margin-bottom: $spacing;
+
+        @include mq($from: tablet) {
+            flex-direction: row;
+        }
+
+        .image {
+            @include mq($from: tablet) {
+                width: 25%;
+                margin-right: $spacing;
+            }
+        }
+
+        .content {
+            @include mq($from: tablet) {
+                padding: 0;
+                flex: 1;
+            }
+        }
+    }
 }

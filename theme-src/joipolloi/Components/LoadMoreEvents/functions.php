@@ -9,7 +9,7 @@ add_action('wp_ajax_nopriv_load_more_events', 'Joi\Components\LoadMoreEvents\loa
 
 function loadMoreEvents()
 {
-    $pageNumber = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 1;
+    $pageNumber = (is_int($_POST['pageNumber'])) ? $_POST['pageNumber'] : 1;
 
     $args = \Joi\Events\getEventQueryArgs(6, $pageNumber);
 
