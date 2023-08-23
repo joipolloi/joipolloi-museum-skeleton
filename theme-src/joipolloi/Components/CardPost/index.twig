@@ -1,4 +1,4 @@
-<a href="{{ post.link }}" class="CardPost {{ classes }}" is="joi-card-post">
+<div class="CardPost {{ classes }}" is="joi-card-post">
     {% if post.thumbnail %}
         <div class="image">
             {{
@@ -31,4 +31,7 @@
         {% set customLinkTitle = linkTitle ? linkTitle : defaultLinkTitle %}
         <span class="link">{{ customLinkTitle }}</span>
     </div>
-</a>
+    <a href="{{ post.link }}">
+        <span class="vh">{{ post.title }}</span>
+    </a>
+</div>

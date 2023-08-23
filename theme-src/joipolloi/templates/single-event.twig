@@ -1,8 +1,8 @@
 {% extends 'templates/_document.twig' %}
 
 {% block content %}
- <article class="post post-type-{{ post.post_type }}">
-  {{
+    <article class="post post-type-{{ post.post_type }}">
+        {{
             renderComponent(
                 'PostHeader',
                 {
@@ -10,10 +10,10 @@
                 }
             )
         }}
-  <div class="post-sidebar contentWidth">
-   <section class="post-main">
-    {{ post.content }}
-    {{
+        <div class="post-sidebar contentWidth">
+            <section class="post-main">
+                {{ post.content }}
+                {{
                     renderComponent(
                         'RecurringTimes',
                         {
@@ -21,9 +21,9 @@
                         }
                     )
                 }}
-   </section>
-   <aside class="post-side">
-    {{
+            </section>
+            <aside class="post-side">
+                {{
                     renderComponent(
                         'EventSidebar',
                         {
@@ -31,10 +31,10 @@
                         }
                     )
                 }}
-   </aside>
-  </div>
- </article>
- {{
+            </aside>
+        </div>
+    </article>
+    {{
         renderComponent(
             'MoreToExplore',
             {
